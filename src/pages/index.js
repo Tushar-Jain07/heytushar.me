@@ -140,7 +140,7 @@ export default function Home() {
     {
       title: 'AI-Powered Dashboard',
       description: 'Real-time analytics dashboard with machine learning insights. Provides predictive analytics and data visualization for business intelligence.',
-      url: 'https://github.com/Tushar-Jain07',
+      url: 'https://github.com/Tushar-Jain07/ai-powered-dashboard',
       image: '/images/image_2.jpg'
     },
     {
