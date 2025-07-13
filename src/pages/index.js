@@ -161,10 +161,10 @@ export default function Home() {
 
   const skills = [
     'React', 'JavaScript', 'TypeScript', 
-    'Node.js', 'Python', 'Three.js',
-    'Next.js', 'TailwindCSS', 'GraphQL',
-    'MongoDB', 'PostgreSQL', 'AWS',
-    'Docker', 'CI/CD', 'WebGL',
+    'Node.js', 'Python',
+    'TailwindCSS', 'GraphQL',
+    'MongoDB', 'PostgreSQL',
+    'Docker',
     'Framer Motion'
   ];
 
