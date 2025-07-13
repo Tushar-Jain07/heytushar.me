@@ -347,7 +347,7 @@ export default function Home() {
               Email Me
             </a>
             <a
-              href="https://github.com/raj-portfolio"
+              href="https://github.com/Tushar-Jain07"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block bg-gray-700 text-white px-8 py-3 rounded-lg hover:bg-gray-600 transition-colors"
