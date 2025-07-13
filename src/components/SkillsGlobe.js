@@ -20,9 +20,14 @@ const SkillsGlobe = ({ skills = [
   const hoveredSkillRef = useRef(null);
 
   useEffect(() => {
-    if (!containerRef.current) return;
+    console.log('SkillsGlobe useEffect running');
+    if (!containerRef.current) {
+      console.error('SkillsGlobe: containerRef.current is null on effect start.');
+      return;
+    }
 
     const currentContainer = containerRef.current; // Capture for cleanup
+    console.log('SkillsGlobe: container dimensions:', currentContainer.clientWidth, currentContainer.clientHeight);
 
     // Initialize scene
     const scene = new THREE.Scene();
@@ -64,6 +69,7 @@ const SkillsGlobe = ({ skills = [
     const fontLoader = new FontLoader();
     
     fontLoader.load('/fonts/helvetiker_regular.json', (font) => {
+      console.log('SkillsGlobe: Font loaded successfully!');
       const radius = 15;
       const skillObjects = [];
       
@@ -102,8 +108,11 @@ const SkillsGlobe = ({ skills = [
         scene.add(textMesh);
         skillObjects.push(textMesh);
       });
+      console.log('SkillsGlobe: Skill objects created and added to scene:', skillObjects.length);
       
       skillObjectsRef.current = skillObjects;
+    }, undefined, (error) => {
+      console.error('SkillsGlobe: Error loading font:', error);
     });
 
     // Handle window resize
@@ -126,6 +135,7 @@ const SkillsGlobe = ({ skills = [
     // Animation loop
     const animate = () => {
       requestAnimationFrame(animate);
+      console.log('SkillsGlobe: Animation loop running');
       
       if (controlsRef.current) {
         controlsRef.current.update();
