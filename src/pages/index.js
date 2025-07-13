@@ -244,11 +244,10 @@ export default function Home() {
           viewport={{ once: true }}
           className="text-lg text-gray-300 max-w-3xl mx-auto text-center"
         >
-          I'm a passionate Full Stack Developer with expertise in modern web technologies.
-          I specialize in creating immersive digital experiences using React, Three.js,
-          and cutting-edge web technologies. My goal is to blend creativity with technical excellence
-          to build applications that are not just functional, but also visually stunning and intuitive.
-        </motion.p>
+            As a passionate Full Stack Developer, I thrive on building impactful digital experiences.
+            My expertise spans modern web technologies, where I focus on crafting robust, scalable, and intuitive applications.
+            I am driven by a desire to combine innovative solutions with clean code, delivering projects that are both highly functional and a joy to use.
+          </motion.p>
       </ParallaxSection>
 
       {/* Skills Section with Grid */}
