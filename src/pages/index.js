@@ -92,14 +92,12 @@ export default function Home() {
   useEffect(() => {
     setMounted(true);
     
-    // Always show ParticleText for debugging
-    setShowParticleText(true);
-    // Clear the interval to prevent switching
-    // const interval = setInterval(() => {
-    //   setShowParticleText(prev => !prev);
-    // }, 10000);
+    // Switch between 3D scene and particle text every 10 seconds
+    const interval = setInterval(() => {
+      setShowParticleText(prev => !prev);
+    }, 10000);
     
-    // return () => clearInterval(interval);
+    return () => clearInterval(interval);
   }, []);
 
   // Implement intersection observer for lazy loading
@@ -134,10 +132,22 @@ export default function Home() {
 
   const projects = [
     {
+      title: '3D E-Commerce Platform',
+      description: 'An immersive shopping experience with 3D product visualization. Users can interact with products in a virtual environment before making purchase decisions.',
+      url: 'https://github.com/Tushar-Jain07',
+      image: '/images/image_1.jpg'
+    },
+    {
       title: 'AI-Powered Dashboard',
       description: 'Real-time analytics dashboard with machine learning insights. Provides predictive analytics and data visualization for business intelligence.',
       url: 'https://github.com/Tushar-Jain07/ai-powered-dashboard',
       image: '/images/image_2.jpg'
+    },
+    {
+      title: 'Virtual Art Gallery',
+      description: 'Interactive 3D gallery showcasing digital artwork. Visitors can explore exhibitions in a virtual space with immersive audio-visual experiences.',
+      url: 'https://github.com/Tushar-Jain07',
+      image: '/images/image_3.jpg'
     },
     {
       title: 'Blockchain Voting App',
@@ -246,10 +256,11 @@ export default function Home() {
           viewport={{ once: true }}
           className="text-lg text-gray-300 max-w-3xl mx-auto text-center"
         >
-            As a passionate Full Stack Developer, I thrive on building impactful digital experiences.
-            My expertise spans modern web technologies, where I focus on crafting robust, scalable, and intuitive applications.
-            I am driven by a desire to combine innovative solutions with clean code, delivering projects that are both highly functional and a joy to use.
-          </motion.p>
+          I'm a passionate Full Stack Developer with expertise in modern web technologies.
+          I specialize in creating immersive digital experiences using React, Three.js,
+          and cutting-edge web technologies. My goal is to blend creativity with technical excellence
+          to build applications that are not just functional, but also visually stunning and intuitive.
+        </motion.p>
       </ParallaxSection>
 
       {/* Skills Section with Grid */}
@@ -273,7 +284,7 @@ export default function Home() {
             viewport={{ once: true }}
             className="text-lg text-gray-300 max-w-3xl mx-auto mt-16 text-center"
           >
-            These are the core technologies I work with. I&apos;m constantly learning and adding new skills to my toolkit.
+            These are the core technologies I work with. I'm constantly learning and adding new skills to my toolkit.
           </motion.p>
         </div>
       </section>
@@ -326,7 +337,7 @@ export default function Home() {
           className="card max-w-2xl mx-auto"
         >
           <p className="text-lg mb-4 text-center">
-            I&apos;m always open to new opportunities and collaborations.
+            I'm always open to new opportunities and collaborations.
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
             <a

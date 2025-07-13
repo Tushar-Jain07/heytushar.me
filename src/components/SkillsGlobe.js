@@ -20,29 +20,22 @@ const SkillsGlobe = ({ skills = [
   const hoveredSkillRef = useRef(null);
 
   useEffect(() => {
-    console.log('SkillsGlobe useEffect running');
-    if (!containerRef.current) {
-      console.error('SkillsGlobe: containerRef.current is null on effect start.');
-      return;
-    }
-
-    const currentContainer = containerRef.current; // Capture for cleanup
-    console.log('SkillsGlobe: container dimensions:', currentContainer.clientWidth, currentContainer.clientHeight);
+    if (!containerRef.current) return;
 
     // Initialize scene
     const scene = new THREE.Scene();
     sceneRef.current = scene;
 
     // Initialize camera
-    const camera = new THREE.PerspectiveCamera(75, currentContainer.clientWidth / currentContainer.clientHeight, 0.1, 1000);
+    const camera = new THREE.PerspectiveCamera(75, containerRef.current.clientWidth / containerRef.current.clientHeight, 0.1, 1000);
     camera.position.z = 30;
     cameraRef.current = camera;
 
     // Initialize renderer
     const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-    renderer.setSize(currentContainer.clientWidth, currentContainer.clientHeight);
+    renderer.setSize(containerRef.current.clientWidth, containerRef.current.clientHeight);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    currentContainer.appendChild(renderer.domElement);
+    containerRef.current.appendChild(renderer.domElement);
     rendererRef.current = renderer;
 
     // Add ambient light
@@ -68,8 +61,7 @@ const SkillsGlobe = ({ skills = [
     // Load font
     const fontLoader = new FontLoader();
     
-    fontLoader.load('/fonts/helvetiker_regular.json', (font) => {
-      console.log('SkillsGlobe: Font loaded successfully!');
+    fontLoader.load('https://threejs.org/examples/fonts/helvetiker_regular.typeface.json', (font) => {
       const radius = 15;
       const skillObjects = [];
       
@@ -108,34 +100,29 @@ const SkillsGlobe = ({ skills = [
         scene.add(textMesh);
         skillObjects.push(textMesh);
       });
-      console.log('SkillsGlobe: Skill objects created and added to scene:', skillObjects.length);
       
       skillObjectsRef.current = skillObjects;
-    }, undefined, (error) => {
-      console.error('SkillsGlobe: Error loading font:', error);
     });
 
     // Handle window resize
     const handleResize = () => {
-      if (!currentContainer) return;
+      if (!containerRef.current) return;
       
-      camera.aspect = currentContainer.clientWidth / currentContainer.clientHeight;
+      camera.aspect = containerRef.current.clientWidth / containerRef.current.clientHeight;
       camera.updateProjectionMatrix();
-      renderer.setSize(currentContainer.clientWidth, currentContainer.clientHeight);
+      renderer.setSize(containerRef.current.clientWidth, containerRef.current.clientHeight);
     };
 
     // Handle mouse move for hover effects
     const handleMouseMove = (event) => {
-      if (!currentContainer) return; // Use captured value
-      const rect = currentContainer.getBoundingClientRect();
-      mouseRef.current.x = ((event.clientX - rect.left) / currentContainer.clientWidth) * 2 - 1;
-      mouseRef.current.y = -((event.clientY - rect.top) / currentContainer.clientHeight) * 2 + 1;
+      const rect = containerRef.current.getBoundingClientRect();
+      mouseRef.current.x = ((event.clientX - rect.left) / containerRef.current.clientWidth) * 2 - 1;
+      mouseRef.current.y = -((event.clientY - rect.top) / containerRef.current.clientHeight) * 2 + 1;
     };
 
     // Animation loop
     const animate = () => {
       requestAnimationFrame(animate);
-      console.log('SkillsGlobe: Animation loop running');
       
       if (controlsRef.current) {
         controlsRef.current.update();
@@ -165,19 +152,16 @@ const SkillsGlobe = ({ skills = [
     };
 
     window.addEventListener('resize', handleResize);
-    currentContainer.addEventListener('mousemove', handleMouseMove);
+    containerRef.current.addEventListener('mousemove', handleMouseMove);
     
     animate();
 
     return () => {
       window.removeEventListener('resize', handleResize);
-      if (currentContainer) {
-        currentContainer.removeEventListener('mousemove', handleMouseMove);
-      }
+      containerRef.current?.removeEventListener('mousemove', handleMouseMove);
       
-      const currentRenderer = rendererRef.current;
-      if (currentContainer && currentRenderer) {
-        currentContainer.removeChild(currentRenderer.domElement);
+      if (containerRef.current && rendererRef.current) {
+        containerRef.current.removeChild(rendererRef.current.domElement);
       }
       
       // Dispose of resources

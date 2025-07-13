@@ -29,7 +29,7 @@ export default function Document() {
         <link rel="apple-touch-icon" href="/images/favicon.ico" />
         
         {/* Preload critical JavaScript */}
-        
+        <link rel="preload" href="/_next/static/chunks/main.js" as="script" />
       </Head>
       <body>
         <Main />
