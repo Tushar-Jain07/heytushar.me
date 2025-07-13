@@ -92,12 +92,14 @@ export default function Home() {
   useEffect(() => {
     setMounted(true);
     
-    // Switch between 3D scene and particle text every 10 seconds
-    const interval = setInterval(() => {
-      setShowParticleText(prev => !prev);
-    }, 10000);
+    // Always show ParticleText for debugging
+    setShowParticleText(true);
+    // Clear the interval to prevent switching
+    // const interval = setInterval(() => {
+    //   setShowParticleText(prev => !prev);
+    // }, 10000);
     
-    return () => clearInterval(interval);
+    // return () => clearInterval(interval);
   }, []);
 
   // Implement intersection observer for lazy loading
@@ -271,7 +273,7 @@ export default function Home() {
             viewport={{ once: true }}
             className="text-lg text-gray-300 max-w-3xl mx-auto mt-16 text-center"
           >
-            These are the core technologies I work with. I'm constantly learning and adding new skills to my toolkit.
+            These are the core technologies I work with. I&apos;m constantly learning and adding new skills to my toolkit.
           </motion.p>
         </div>
       </section>
@@ -324,7 +326,7 @@ export default function Home() {
           className="card max-w-2xl mx-auto"
         >
           <p className="text-lg mb-4 text-center">
-            I'm always open to new opportunities and collaborations.
+            I&apos;m always open to new opportunities and collaborations.
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
             <a
