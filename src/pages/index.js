@@ -132,22 +132,10 @@ export default function Home() {
 
   const projects = [
     {
-      title: '3D E-Commerce Platform',
-      description: 'An immersive shopping experience with 3D product visualization. Users can interact with products in a virtual environment before making purchase decisions.',
-      url: 'https://github.com/Tushar-Jain07',
-      image: '/images/image_1.jpg'
-    },
-    {
       title: 'AI-Powered Dashboard',
       description: 'Real-time analytics dashboard with machine learning insights. Provides predictive analytics and data visualization for business intelligence.',
       url: 'https://github.com/Tushar-Jain07/ai-powered-dashboard',
       image: '/images/image_2.jpg'
-    },
-    {
-      title: 'Virtual Art Gallery',
-      description: 'Interactive 3D gallery showcasing digital artwork. Visitors can explore exhibitions in a virtual space with immersive audio-visual experiences.',
-      url: 'https://github.com/Tushar-Jain07',
-      image: '/images/image_3.jpg'
     },
     {
       title: 'Blockchain Voting App',
