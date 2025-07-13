@@ -1,4 +1,4 @@
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, useCallback } from 'react';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry';
@@ -22,20 +22,22 @@ const SkillsGlobe = ({ skills = [
   useEffect(() => {
     if (!containerRef.current) return;
 
+    const currentContainer = containerRef.current; // Capture for cleanup
+
     // Initialize scene
     const scene = new THREE.Scene();
     sceneRef.current = scene;
 
     // Initialize camera
-    const camera = new THREE.PerspectiveCamera(75, containerRef.current.clientWidth / containerRef.current.clientHeight, 0.1, 1000);
+    const camera = new THREE.PerspectiveCamera(75, currentContainer.clientWidth / currentContainer.clientHeight, 0.1, 1000);
     camera.position.z = 30;
     cameraRef.current = camera;
 
     // Initialize renderer
     const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-    renderer.setSize(containerRef.current.clientWidth, containerRef.current.clientHeight);
+    renderer.setSize(currentContainer.clientWidth, currentContainer.clientHeight);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    containerRef.current.appendChild(renderer.domElement);
+    currentContainer.appendChild(renderer.domElement);
     rendererRef.current = renderer;
 
     // Add ambient light
@@ -61,7 +63,7 @@ const SkillsGlobe = ({ skills = [
     // Load font
     const fontLoader = new FontLoader();
     
-    fontLoader.load('https://threejs.org/examples/fonts/helvetiker_regular.typeface.json', (font) => {
+    fontLoader.load('/fonts/helvetiker_regular.typeface.json', (font) => {
       const radius = 15;
       const skillObjects = [];
       
@@ -105,20 +107,21 @@ const SkillsGlobe = ({ skills = [
     });
 
     // Handle window resize
-    const handleResize = () => {
-      if (!containerRef.current) return;
+    const handleResize = useCallback(() => {
+      if (!currentContainer) return;
       
-      camera.aspect = containerRef.current.clientWidth / containerRef.current.clientHeight;
+      camera.aspect = currentContainer.clientWidth / currentContainer.clientHeight;
       camera.updateProjectionMatrix();
-      renderer.setSize(containerRef.current.clientWidth, containerRef.current.clientHeight);
-    };
+      renderer.setSize(currentContainer.clientWidth, currentContainer.clientHeight);
+    }, [camera, renderer, currentContainer]);
 
     // Handle mouse move for hover effects
-    const handleMouseMove = (event) => {
-      const rect = containerRef.current.getBoundingClientRect();
-      mouseRef.current.x = ((event.clientX - rect.left) / containerRef.current.clientWidth) * 2 - 1;
-      mouseRef.current.y = -((event.clientY - rect.top) / containerRef.current.clientHeight) * 2 + 1;
-    };
+    const handleMouseMove = useCallback((event) => {
+      if (!currentContainer) return;
+      const rect = currentContainer.getBoundingClientRect();
+      mouseRef.current.x = ((event.clientX - rect.left) / currentContainer.clientWidth) * 2 - 1;
+      mouseRef.current.y = -((event.clientY - rect.top) / currentContainer.clientHeight) * 2 + 1;
+    }, [currentContainer]);
 
     // Animation loop
     const animate = () => {
@@ -152,16 +155,16 @@ const SkillsGlobe = ({ skills = [
     };
 
     window.addEventListener('resize', handleResize);
-    containerRef.current.addEventListener('mousemove', handleMouseMove);
+    currentContainer.addEventListener('mousemove', handleMouseMove);
     
     animate();
 
     return () => {
       window.removeEventListener('resize', handleResize);
-      containerRef.current?.removeEventListener('mousemove', handleMouseMove);
+      currentContainer?.removeEventListener('mousemove', handleMouseMove);
       
-      if (containerRef.current && rendererRef.current) {
-        containerRef.current.removeChild(rendererRef.current.domElement);
+      if (currentContainer && rendererRef.current) {
+        currentContainer.removeChild(rendererRef.current.domElement);
       }
       
       // Dispose of resources
