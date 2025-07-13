@@ -218,7 +218,7 @@ export default function Home() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-xl text-gray-300"
           >
-            Full Stack Developer & 3D Enthusiast
+            Full Stack Developer
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
