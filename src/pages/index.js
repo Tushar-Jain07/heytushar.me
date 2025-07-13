@@ -45,6 +45,8 @@ const ThemeToggle = () => {
   );
 };
 
+// Temporary comment to force Vercel re-build
+
 const ScrollToTopButton = () => {
   const [isVisible, setIsVisible] = useState(false);
 
