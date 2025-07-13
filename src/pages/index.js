@@ -256,15 +256,14 @@ export default function Home() {
           viewport={{ once: true }}
           className="text-lg text-gray-300 max-w-3xl mx-auto text-center"
         >
-          I'm a passionate Full Stack Developer with expertise in modern web technologies.
-          I specialize in creating immersive digital experiences using React, Three.js,
-          and cutting-edge web technologies. My goal is to blend creativity with technical excellence
-          to build applications that are not just functional, but also visually stunning and intuitive.
-        </motion.p>
+            As a passionate Full Stack Developer, I thrive on building impactful digital experiences.
+            My expertise spans modern web technologies, where I focus on crafting robust, scalable, and intuitive applications.
+            I am driven by a desire to combine innovative solutions with clean code, delivering projects that are both highly functional and a joy to use.
+          </motion.p>
       </ParallaxSection>
 
       {/* Skills Section with Grid */}
-      <section className="py-24 bg-[url('/images/image_3.jpg')] bg-cover bg-center bg-fixed relative">
+      <section id="skills" className="relative py-24 bg-gray-900">
         <div className="absolute inset-0 bg-black bg-opacity-80"></div>
         <div className="container mx-auto px-4 relative z-10">
           <motion.h2
@@ -284,7 +283,7 @@ export default function Home() {
             viewport={{ once: true }}
             className="text-lg text-gray-300 max-w-3xl mx-auto mt-16 text-center"
           >
-            These are the core technologies I work with. I'm constantly learning and adding new skills to my toolkit.
+            These are the core technologies I work with. I&apos;m constantly learning and adding new skills to my toolkit.
           </motion.p>
         </div>
       </section>
@@ -337,7 +336,7 @@ export default function Home() {
           className="card max-w-2xl mx-auto"
         >
           <p className="text-lg mb-4 text-center">
-            I'm always open to new opportunities and collaborations.
+            I&apos;m always open to new opportunities and collaborations.
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
             <a
