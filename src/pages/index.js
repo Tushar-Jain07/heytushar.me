@@ -94,6 +94,20 @@ export default function Home() {
   const [showParticleText, setShowParticleText] = useState(true);
   const { theme, toggleTheme } = useTheme();
 
+  // Embedded gradient placeholder for images (SVG as data URL)
+  const placeholder = 'data:image/svg+xml;utf8,' + encodeURIComponent(`
+    <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="600">
+      <defs>
+        <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#1e3a8a"/>
+          <stop offset="50%" stop-color="#3b82f6"/>
+          <stop offset="100%" stop-color="#7c3aed"/>
+        </linearGradient>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#g)"/>
+    </svg>
+  `);
+
   useEffect(() => {
     setMounted(true);
     
@@ -140,25 +154,25 @@ export default function Home() {
       title: '3D E-Commerce Platform',
       description: 'An immersive shopping experience with 3D product visualization. Users can interact with products in a virtual environment before making purchase decisions.',
       url: 'https://github.com/Tushar-Jain07',
-      image: '/images/image_1.jpg'
+      image: placeholder
     },
     {
       title: 'AI-Powered Dashboard',
       description: 'Real-time analytics dashboard with machine learning insights. Provides predictive analytics and data visualization for business intelligence.',
       url: 'https://github.com/Tushar-Jain07/ai-powered-dashboard',
-      image: '/images/image_2.jpg'
+      image: placeholder
     },
     {
       title: 'Virtual Art Gallery',
       description: 'Interactive 3D gallery showcasing digital artwork. Visitors can explore exhibitions in a virtual space with immersive audio-visual experiences.',
       url: 'https://github.com/Tushar-Jain07',
-      image: '/images/image_3.jpg'
+      image: placeholder
     },
     {
       title: 'Blockchain Voting App',
       description: 'Secure and transparent voting application built on blockchain technology. Ensures tamper-proof elections with real-time results.',
       url: 'https://github.com/Tushar-Jain07',
-      image: '/images/image_4.jpg'
+      image: placeholder
     }
   ];
 
@@ -350,8 +364,8 @@ export default function Home() {
       </section>
 
       {/* Projects Section with Grid */}
-      <section id="projects" className="py-24 bg-[url('/images/image_7.jpg')] bg-cover bg-center relative">
-        <div className="absolute inset-0 bg-black bg-opacity-85"></div>
+      <section id="projects" className="py-24 relative">
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-900/60 via-black/70 to-purple-900/60"></div>
         <div className="container mx-auto px-4 relative z-10">
           <motion.h2
             initial={{ opacity: 0, x: -20 }}
@@ -378,7 +392,7 @@ export default function Home() {
       {/* Contact Section */}
       <ParallaxSection 
         id="contact"
-        backgroundImage="/images/image_2.jpg"
+        backgroundImage={undefined}
         height="auto"
         className="py-24"
         speed={0.3}

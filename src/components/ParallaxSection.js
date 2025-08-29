@@ -31,7 +31,7 @@ const ParallaxSection = ({
       <motion.div
         className="absolute inset-0 w-full h-full"
         style={{
-          backgroundImage: `url(${backgroundImage})`,
+          backgroundImage: backgroundImage ? `url(${backgroundImage})` : 'radial-gradient(circle at 20% 10%, rgba(37,99,235,0.25), transparent 60%), radial-gradient(circle at 80% 0%, rgba(168,85,247,0.18), transparent 60%), radial-gradient(circle at 50% -10%, rgba(59,130,246,0.18), transparent 60%)',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           y: backgroundY
