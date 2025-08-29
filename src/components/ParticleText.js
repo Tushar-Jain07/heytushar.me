@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useCallback } from 'react';
 import * as THREE from 'three';
 
 const ParticleText = ({ text = 'TUSHAR JAIN', size = 70, color = '#ffffff', hoveredColor = '#60a5fa' }) => {
@@ -13,20 +13,22 @@ const ParticleText = ({ text = 'TUSHAR JAIN', size = 70, color = '#ffffff', hove
   useEffect(() => {
     if (!containerRef.current) return;
 
+    const currentContainer = containerRef.current; // Capture ref for cleanup
+
     // Initialize scene
     const scene = new THREE.Scene();
     sceneRef.current = scene;
 
     // Initialize camera
-    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const camera = new THREE.PerspectiveCamera(75, currentContainer.clientWidth, 0.1, 1000);
     camera.position.z = 20;
     cameraRef.current = camera;
 
     // Initialize renderer
     const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setSize(currentContainer.clientWidth, currentContainer.clientHeight);
     renderer.setPixelRatio(window.devicePixelRatio);
-    containerRef.current.appendChild(renderer.domElement);
+    currentContainer.appendChild(renderer.domElement);
     rendererRef.current = renderer;
 
     // Create canvas for text
@@ -96,15 +98,20 @@ const ParticleText = ({ text = 'TUSHAR JAIN', size = 70, color = '#ffffff', hove
 
     // Handle window resize
     const handleResize = () => {
-      camera.aspect = window.innerWidth / window.innerHeight;
-      camera.updateProjectionMatrix();
-      renderer.setSize(window.innerWidth, window.innerHeight);
+      if (cameraRef.current && rendererRef.current && currentContainer) {
+        cameraRef.current.aspect = currentContainer.clientWidth / currentContainer.clientHeight;
+        cameraRef.current.updateProjectionMatrix();
+        rendererRef.current.setSize(currentContainer.clientWidth, currentContainer.clientHeight);
+      }
     };
 
     // Handle mouse move
     const handleMouseMove = (event) => {
-      mouseRef.current.x = (event.clientX / window.innerWidth) * 2 - 1;
-      mouseRef.current.y = -(event.clientY / window.innerHeight) * 2 + 1;
+      if (currentContainer) {
+        const rect = currentContainer.getBoundingClientRect();
+        mouseRef.current.x = ((event.clientX - rect.left) / currentContainer.clientWidth) * 2 - 1;
+        mouseRef.current.y = -((event.clientY - rect.top) / currentContainer.clientHeight) * 2 + 1;
+      }
     };
 
     // Animation loop
@@ -120,7 +127,6 @@ const ParticleText = ({ text = 'TUSHAR JAIN', size = 70, color = '#ffffff', hove
 
         // Update particle positions for wave effect
         const positions = particlesRef.current.geometry.attributes.position.array;
-        const originalPositions = [...positions];
         
         for (let i = 0; i < positions.length; i += 3) {
           positions[i + 2] = Math.sin((i + frame * 10) * 0.1) * 0.5;
@@ -129,35 +135,40 @@ const ParticleText = ({ text = 'TUSHAR JAIN', size = 70, color = '#ffffff', hove
         particlesRef.current.geometry.attributes.position.needsUpdate = true;
 
         // Raycaster for hover effects
-        raycasterRef.current.setFromCamera(mouseRef.current, camera);
-        const intersects = raycasterRef.current.intersectObject(particlesRef.current);
+        if (raycasterRef.current && cameraRef.current) {
+          raycasterRef.current.setFromCamera(mouseRef.current, cameraRef.current);
+          const intersects = raycasterRef.current.intersectObject(particlesRef.current);
 
-        if (intersects.length > 0) {
-          const { index } = intersects[0];
-          const colors = particlesRef.current.geometry.attributes.color.array;
-          const hoverColor = new THREE.Color(hoveredColor);
-          
-          colors[index * 3] = hoverColor.r;
-          colors[index * 3 + 1] = hoverColor.g;
-          colors[index * 3 + 2] = hoverColor.b;
-          
-          particlesRef.current.geometry.attributes.color.needsUpdate = true;
+          if (intersects.length > 0) {
+            const { index } = intersects[0];
+            const colors = particlesRef.current.geometry.attributes.color.array;
+            const hoverColor = new THREE.Color(hoveredColor);
+            
+            colors[index * 3] = hoverColor.r;
+            colors[index * 3 + 1] = hoverColor.g;
+            colors[index * 3 + 2] = hoverColor.b;
+            
+            particlesRef.current.geometry.attributes.color.needsUpdate = true;
+          }
         }
       }
-
-      renderer.render(scene, camera);
+      if (sceneRef.current && cameraRef.current && rendererRef.current) {
+        rendererRef.current.render(sceneRef.current, cameraRef.current);
+      }
     };
 
     window.addEventListener('resize', handleResize);
-    window.addEventListener('mousemove', handleMouseMove);
+    currentContainer.addEventListener('mousemove', handleMouseMove);
     animate();
 
     return () => {
       window.removeEventListener('resize', handleResize);
-      window.removeEventListener('mousemove', handleMouseMove);
-      if (containerRef.current && rendererRef.current) {
-        containerRef.current.removeChild(rendererRef.current.domElement);
+      currentContainer.removeEventListener('mousemove', handleMouseMove);
+      
+      if (currentContainer && rendererRef.current) {
+        currentContainer.removeChild(rendererRef.current.domElement);
       }
+      // Dispose of resources if necessary
     };
   }, [text, size, hoveredColor]);
 

@@ -64,9 +64,6 @@ function MyApp({ Component, pageProps, router }) {
         <meta property="og:description" content="Portfolio of Tushar Jain, a Full Stack Developer specializing in React, Next.js, Three.js, and modern web technologies." />
         <meta property="og:type" content="website" />
         <link rel="icon" href="/images/favicon.ico" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
       </Head>
       {mounted && (
         <AnimatePresence mode="wait" initial={false}>

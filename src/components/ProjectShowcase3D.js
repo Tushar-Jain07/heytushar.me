@@ -19,6 +19,8 @@ const ProjectShowcase3D = ({ projects }) => {
   useEffect(() => {
     if (!containerRef.current) return;
 
+    const currentContainer = containerRef.current; // Capture for cleanup
+
     // Initialize scene
     const scene = new THREE.Scene();
     scene.background = new THREE.Color(0x111827); // Dark background color
@@ -28,7 +30,7 @@ const ProjectShowcase3D = ({ projects }) => {
     // Initialize camera
     const camera = new THREE.PerspectiveCamera(
       60,
-      containerRef.current.clientWidth / containerRef.current.clientHeight,
+      currentContainer.clientWidth / currentContainer.clientHeight,
       0.1,
       100
     );
@@ -37,11 +39,11 @@ const ProjectShowcase3D = ({ projects }) => {
 
     // Initialize renderer
     const renderer = new THREE.WebGLRenderer({ antialias: true });
-    renderer.setSize(containerRef.current.clientWidth, containerRef.current.clientHeight);
+    renderer.setSize(currentContainer.clientWidth, currentContainer.clientHeight);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.shadowMap.enabled = true;
     renderer.setClearColor(0x111827, 1); // Set clear color to match scene background
-    containerRef.current.appendChild(renderer.domElement);
+    currentContainer.appendChild(renderer.domElement);
     rendererRef.current = renderer;
 
     // Add lights
@@ -77,11 +79,11 @@ const ProjectShowcase3D = ({ projects }) => {
 
     // Handle window resize
     const handleResize = () => {
-      if (!containerRef.current) return;
+      if (!currentContainer) return; // Use captured value
       
-      camera.aspect = containerRef.current.clientWidth / containerRef.current.clientHeight;
+      camera.aspect = currentContainer.clientWidth / currentContainer.clientHeight;
       camera.updateProjectionMatrix();
-      renderer.setSize(containerRef.current.clientWidth, containerRef.current.clientHeight);
+      renderer.setSize(currentContainer.clientWidth, currentContainer.clientHeight);
     };
 
     window.addEventListener('resize', handleResize);
@@ -89,8 +91,9 @@ const ProjectShowcase3D = ({ projects }) => {
     return () => {
       window.removeEventListener('resize', handleResize);
       
-      if (containerRef.current && rendererRef.current) {
-        containerRef.current.removeChild(rendererRef.current.domElement);
+      const currentRenderer = rendererRef.current; // Capture for cleanup
+      if (currentContainer && currentRenderer) {
+        currentContainer.removeChild(currentRenderer.domElement);
       }
       
       // Dispose of resources
@@ -150,10 +153,12 @@ const ProjectShowcase3D = ({ projects }) => {
   useEffect(() => {
     if (!containerRef.current) return;
 
+    const currentContainer = containerRef.current; // Capture for stable reference
+
     const handleMouseMove = (event) => {
-      const rect = containerRef.current.getBoundingClientRect();
-      mouseRef.current.x = ((event.clientX - rect.left) / containerRef.current.clientWidth) * 2 - 1;
-      mouseRef.current.y = -((event.clientY - rect.top) / containerRef.current.clientHeight) * 2 + 1;
+      const rect = currentContainer.getBoundingClientRect();
+      mouseRef.current.x = ((event.clientX - rect.left) / currentContainer.clientWidth) * 2 - 1;
+      mouseRef.current.y = -((event.clientY - rect.top) / currentContainer.clientHeight) * 2 + 1;
     };
 
     const handleClick = () => {
@@ -162,12 +167,12 @@ const ProjectShowcase3D = ({ projects }) => {
       }
     };
 
-    containerRef.current.addEventListener('mousemove', handleMouseMove);
-    containerRef.current.addEventListener('click', handleClick);
+    currentContainer.addEventListener('mousemove', handleMouseMove);
+    currentContainer.addEventListener('click', handleClick);
 
     return () => {
-      containerRef.current?.removeEventListener('mousemove', handleMouseMove);
-      containerRef.current?.removeEventListener('click', handleClick);
+      currentContainer.removeEventListener('mousemove', handleMouseMove);
+      currentContainer.removeEventListener('click', handleClick);
     };
   }, [hoveredProject]);
 

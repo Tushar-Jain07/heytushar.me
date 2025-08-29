@@ -15,6 +15,8 @@ const ThreeScene = () => {
   useEffect(() => {
     if (!containerRef.current) return;
 
+    const currentContainer = containerRef.current; // Capture for cleanup
+
     // Initialize scene
     const scene = new THREE.Scene();
     sceneRef.current = scene;
@@ -22,7 +24,7 @@ const ThreeScene = () => {
     // Initialize camera
     const camera = new THREE.PerspectiveCamera(
       75,
-      window.innerWidth / window.innerHeight,
+      currentContainer.clientWidth / currentContainer.clientHeight,
       0.1,
       1000
     );
@@ -34,9 +36,9 @@ const ThreeScene = () => {
       antialias: true,
       alpha: true
     });
-    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setSize(currentContainer.clientWidth, currentContainer.clientHeight);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    containerRef.current.appendChild(renderer.domElement);
+    currentContainer.appendChild(renderer.domElement);
     rendererRef.current = renderer;
 
     // Add ambient light
@@ -139,15 +141,17 @@ const ThreeScene = () => {
 
     // Handle window resize
     const handleResize = () => {
-      camera.aspect = window.innerWidth / window.innerHeight;
+      if (!currentContainer) return;
+      camera.aspect = currentContainer.clientWidth / currentContainer.clientHeight;
       camera.updateProjectionMatrix();
-      renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.setSize(currentContainer.clientWidth, currentContainer.clientHeight);
     };
 
     // Handle mouse move for parallax effect
     const handleMouseMove = (event) => {
-      const mouseX = (event.clientX / window.innerWidth) * 2 - 1;
-      const mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
+      if (!currentContainer) return;
+      const mouseX = (event.clientX / currentContainer.clientWidth) * 2 - 1;
+      const mouseY = -(event.clientY / currentContainer.clientHeight) * 2 + 1;
       
       // Subtle camera movement
       camera.position.x += (mouseX * 0.5 - camera.position.x) * 0.05;
@@ -189,16 +193,19 @@ const ThreeScene = () => {
     };
 
     window.addEventListener('resize', handleResize);
-    window.addEventListener('mousemove', handleMouseMove);
+    currentContainer.addEventListener('mousemove', handleMouseMove);
     
     animate();
 
     return () => {
       window.removeEventListener('resize', handleResize);
-      window.removeEventListener('mousemove', handleMouseMove);
+      if (currentContainer) {
+        currentContainer.removeEventListener('mousemove', handleMouseMove);
+      }
       
-      if (containerRef.current && rendererRef.current) {
-        containerRef.current.removeChild(rendererRef.current.domElement);
+      const currentRenderer = rendererRef.current;
+      if (currentContainer && currentRenderer) {
+        currentContainer.removeChild(currentRenderer.domElement);
       }
       
       // Dispose of geometries and materials

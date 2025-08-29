@@ -35,6 +35,9 @@ const ProjectGrid = dynamic(() => import('../components/ProjectGrid'), {
   loading: () => <div className="w-full h-[600px] bg-gray-900 rounded-lg animate-pulse" />
 });
 
+const Navbar = dynamic(() => import('../components/Navbar'), { ssr: false });
+const ResumeTabs = dynamic(() => import('../components/ResumeTabs'), { ssr: false });
+
 const ThemeToggle = () => {
   const { theme, toggleTheme } = useTheme();
 
@@ -171,10 +174,11 @@ export default function Home() {
   return (
     <div className="min-h-screen hero-gradient text-white">
       {mounted && <AnimatedCursor />}
+      <Navbar />
       <ThemeToggle />
       
       {/* Hero Section */}
-      <section className="relative h-screen flex items-center justify-center overflow-hidden">
+      <section id="home" className="relative h-screen flex items-center justify-center overflow-hidden">
         {mounted && (
           <div className="absolute inset-0">
             <AnimatePresence mode="wait">
@@ -206,6 +210,14 @@ export default function Home() {
         )}
 
         <div className="relative z-10 text-center">
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-sm uppercase tracking-widest text-gray-300 mb-2"
+          >
+            Hey! I am
+          </motion.p>
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -218,9 +230,9 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-xl text-gray-300"
+            className="text-2xl text-gray-200"
           >
-            Full Stack Developer
+            I'm a Full Stack Developer
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -240,6 +252,7 @@ export default function Home() {
 
       {/* About Section with Parallax */}
       <ParallaxSection 
+        id="about"
         backgroundImage="/images/image_6.jpg"
         height="auto"
         className="py-24"
@@ -262,7 +275,53 @@ export default function Home() {
             My expertise spans modern web technologies, where I focus on crafting robust, scalable, and intuitive applications.
             I am driven by a desire to combine innovative solutions with clean code, delivering projects that are both highly functional and a joy to use.
           </motion.p>
+          <div className="grid md:grid-cols-2 gap-6 mt-10 max-w-4xl mx-auto">
+            <div className="card">
+              <ul className="space-y-2 text-gray-300">
+                <li><span className="text-white font-semibold">Name:</span> Tushar Jain</li>
+                <li><span className="text-white font-semibold">Email:</span> tusharjain1911@gmail.com</li>
+                <li><span className="text-white font-semibold">Phone:</span> +91-xxxxxxxxxx</li>
+              </ul>
+            </div>
+            <div className="card">
+              <ul className="space-y-2 text-gray-300">
+                <li><span className="text-white font-semibold">Address:</span> Mumbai, India</li>
+                <li><span className="text-white font-semibold">Role:</span> Full Stack Developer</li>
+                <li><span className="text-white font-semibold">Freelance:</span> Available</li>
+              </ul>
+            </div>
+          </div>
+          <div className="text-center mt-8">
+            <a href="/cv.pdf" className="inline-block bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors" download>
+              Download CV
+            </a>
+          </div>
       </ParallaxSection>
+
+      {/* Freelancing CTA */}
+      <section className="py-20 bg-gray-800">
+        <div className="container mx-auto px-4 text-center">
+          <h3 className="text-3xl font-semibold mb-3">I'm Available for freelancing</h3>
+          <p className="text-gray-300 max-w-2xl mx-auto mb-6">I take on selected freelance projects where I can deliver high impact with modern web technologies.</p>
+          <a href="#contact" className="inline-block bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors">Hire me</a>
+        </div>
+      </section>
+
+      {/* Resume Section */}
+      <section id="resume" className="py-24 bg-gray-900 relative">
+        <div className="absolute inset-0 bg-black bg-opacity-80"></div>
+        <div className="container mx-auto px-4 relative z-10">
+          <motion.h2
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="text-4xl font-bold mb-8 text-center"
+          >
+            Resume
+          </motion.h2>
+          {mounted && <ResumeTabs />}
+        </div>
+      </section>
 
       {/* Skills Section with Grid */}
       <section id="skills" className="relative py-24 bg-gray-900">
@@ -318,6 +377,7 @@ export default function Home() {
 
       {/* Contact Section */}
       <ParallaxSection 
+        id="contact"
         backgroundImage="/images/image_2.jpg"
         height="auto"
         className="py-24"

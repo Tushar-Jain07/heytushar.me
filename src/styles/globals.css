@@ -47,6 +47,13 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+/* Subtle hero gradient background */
+.hero-gradient {
+  background: radial-gradient(1200px 600px at 50% -10%, rgba(37, 99, 235, 0.25), transparent),
+              radial-gradient(800px 400px at 80% 0%, rgba(168, 85, 247, 0.18), transparent),
+              radial-gradient(600px 300px at 20% 10%, rgba(59, 130, 246, 0.18), transparent);
+}
+
 /* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 10px;
@@ -101,6 +108,24 @@ body {
 
 .theme-toggle:hover {
   transform: scale(1.1);
+}
+
+/* Scroll to top button */
+.scroll-to-top {
+  position: fixed;
+  bottom: 1.25rem;
+  right: 1.25rem;
+  z-index: 40;
+  width: 44px;
+  height: 44px;
+  border-radius: 9999px;
+  background-color: var(--card-bg);
+  border: 1px solid var(--card-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 10px 25px -5px rgba(0,0,0,0.2);
 }
 
 /* Responsive images */
