@@ -42,16 +42,13 @@ export default function ResumeTabs() {
 			{/* Tab Content */}
 			<div className="min-h-[400px]">
 				{active === 'Skills' && (
-					<div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+					<div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 max-w-4xl mx-auto">
 						{[
 							['React & Next.js', '90%', 'Frontend Development'],
 							['Node.js & Express', '85%', 'Backend Development'],
 							['Python & Flask', '90%', 'Backend & Data Science'],
 							['MongoDB & SQL', '85%', 'Database Management'],
 							['JavaScript & TypeScript', '90%', 'Programming Languages'],
-							['Flutter & React Native', '80%', 'Mobile Development'],
-							['AWS & DigitalOcean', '75%', 'Cloud & Deployment'],
-							['Photoshop & Illustrator', '90%', 'Design & Graphics'],
 							['Git & GitHub', '85%', 'Version Control']
 						].map(([name, pct, category]) => (
 							<div key={name} className="bg-gray-800/50 backdrop-blur-sm rounded-lg p-6 border border-gray-700/50 hover:border-blue-500/50 transition-all duration-300 group">
