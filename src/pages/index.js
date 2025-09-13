@@ -341,16 +341,16 @@ export default function Home() {
             {projects.map((project, index) => (
               <div
                 key={index}
-                className=\"bg-gray-800 rounded-lg shadow-lg overflow-hidden\"
+                className="bg-gray-800 rounded-lg shadow-lg overflow-hidden"
               >
-                <div className=\"p-6\">
-                  <h3 className=\"text-2xl font-semibold mb-2\">{project.title}</h3>
-                  <p className=\"text-gray-300 mb-4\">{project.description}</p>
+                <div className="p-6">
+                  <h3 className="text-2xl font-semibold mb-2">{project.title}</h3>
+                  <p className="text-gray-300 mb-4">{project.description}</p>
                   <a
                     href={project.url}
-                    target=\"_blank\"
-                    rel=\"noopener noreferrer\"
-                    className=\"inline-block bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors\"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-block bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors"
                   >
                     View Project
                   </a>
@@ -360,7 +360,7 @@ export default function Home() {
           </div>
 
           {/* <p
-            className=\"text-lg text-gray-300 max-w-3xl mx-auto mt-16 text-center\"
+            className="text-lg text-gray-300 max-w-3xl mx-auto mt-16 text-center"
           >
             These projects showcase my skills and experience in building modern web applications.
           </p> */}
