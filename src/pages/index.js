@@ -264,8 +264,7 @@ export default function Home() {
           <div className="max-w-3xl mx-auto mt-10 text-gray-300">
             <p><span className="text-white font-semibold">Name:</span> Tushar Jain</p>
             <p><span className="text-white font-semibold">Email:</span> tusharjain1911@gmail.com</p>
-            <p><span className="text-white font-semibold">Phone:</span> +91-xxxxxxxxxx</p>
-            <p><span className="text-white font-semibold">Address:</span> Mumbai, India</p>
+            <p><span className="text-white font-semibold">Address:</span> Ahmedabad, India</p>
             <p><span className="text-white font-semibold">Role:</span> Full Stack Developer</p>
             <p><span className="text-white font-semibold">Freelance:</span> Available</p>
           </div>
