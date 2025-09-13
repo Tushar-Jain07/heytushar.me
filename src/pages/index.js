@@ -36,7 +36,7 @@ import Image from 'next/image';
 // });
 
 const Navbar = dynamic(() => import('../components/Navbar'), { ssr: false });
-// const ResumeTabs = dynamic(() => import('../components/ResumeTabs'), { ssr: false });
+const ResumeTabs = dynamic(() => import('../components/ResumeTabs'), { ssr: false });
 
 // const ThemeToggle = () => {
 //   const { theme, toggleTheme } = useTheme();
@@ -270,9 +270,7 @@ export default function Home() {
             <p><span className="text-white font-semibold">Freelance:</span> Available</p>
           </div>
           <div className="text-center mt-8">
-            <a href="/cv.pdf" className="inline-block bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors" download>
-              Download CV
-            </a>
+            <a href="/Tushar_Jain_Resume.pdf" target="_blank" rel="noopener noreferrer" className="inline-block bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors">Download Resume</a>
           </div>
       </section>
 
@@ -286,7 +284,7 @@ export default function Home() {
       </section>
 
       {/* Resume Section */}
-      {/* <section id="resume" className="py-24 bg-gray-900 relative">
+      <section id="resume" className="py-24 bg-gray-900 relative">
         <div className="absolute inset-0 bg-black bg-opacity-80"></div>
         <div className="container mx-auto px-4 relative z-10">
           <h2
@@ -296,7 +294,7 @@ export default function Home() {
           </h2>
           {mounted && <ResumeTabs />}
         </div>
-      </section> */}
+      </section>
 
       {/* Skills Section */}
       <section id="skills" className="relative py-24 bg-gray-900">
