@@ -1,52 +1,52 @@
 import { useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
-import { motion, AnimatePresence } from 'framer-motion';
+// import { motion, AnimatePresence } from 'framer-motion';
 import { useTheme } from '../pages/_app';
 import Image from 'next/image';
 
 // Dynamically import components with no SSR
-const ThreeScene = dynamic(() => import('../components/ThreeScene'), {
-  ssr: false,
-  loading: () => <div className="w-full h-full bg-gray-900" />
-});
+// const ThreeScene = dynamic(() => import('../components/ThreeScene'), {
+//   ssr: false,
+//   loading: () => <div className="w-full h-full bg-gray-900" />
+// });
 
-const ParticleText = dynamic(() => import('../components/ParticleText'), {
-  ssr: false,
-  loading: () => <div className="w-full h-full flex items-center justify-center">
-    <div className="loading-spinner"></div>
-  </div>
-});
+// const ParticleText = dynamic(() => import('../components/ParticleText'), {
+//   ssr: false,
+//   loading: () => <div className="w-full h-full flex items-center justify-center">
+//     <div className="loading-spinner"></div>
+//   </div>
+// });
 
-const AnimatedCursor = dynamic(() => import('../components/AnimatedCursor'), {
-  ssr: false
-});
+// const AnimatedCursor = dynamic(() => import('../components/AnimatedCursor'), {
+//   ssr: false
+// });
 
-const SkillsGrid = dynamic(() => import('../components/SkillsGrid'), {
-  ssr: false,
-  loading: () => <div className="w-full h-[500px] bg-gray-900 rounded-lg animate-pulse" />
-});
+// const SkillsGrid = dynamic(() => import('../components/SkillsGrid'), {
+//   ssr: false,
+//   loading: () => <div className="w-full h-[500px] bg-gray-900 rounded-lg animate-pulse" />
+// });
 
-const ParallaxSection = dynamic(() => import('../components/ParallaxSection'), {
-  ssr: false
-});
+// const ParallaxSection = dynamic(() => import('../components/ParallaxSection'), {
+//   ssr: false
+// });
 
-const ProjectGrid = dynamic(() => import('../components/ProjectGrid'), {
-  ssr: false,
-  loading: () => <div className="w-full h-[600px] bg-gray-900 rounded-lg animate-pulse" />
-});
+// const ProjectGrid = dynamic(() => import('../components/ProjectGrid'), {
+//   ssr: false,
+//   loading: () => <div className="w-full h-[600px] bg-gray-900 rounded-lg animate-pulse" />
+// });
 
 const Navbar = dynamic(() => import('../components/Navbar'), { ssr: false });
 const ResumeTabs = dynamic(() => import('../components/ResumeTabs'), { ssr: false });
 
-const ThemeToggle = () => {
-  const { theme, toggleTheme } = useTheme();
+// const ThemeToggle = () => {
+//   const { theme, toggleTheme } = useTheme();
 
-  return (
-    <div className="theme-toggle" onClick={toggleTheme} aria-label="Toggle theme">
-      {theme === 'dark' ? '💡' : '🌙'}
-    </div>
-  );
-};
+//   return (
+//     <div className="theme-toggle" onClick={toggleTheme} aria-label="Toggle theme">
+//       {theme === 'dark' ? '💡' : '🌙'}
+//     </div>
+//   );
+// };
 
 // Temporary comment to force Vercel re-build
 
@@ -76,23 +76,20 @@ const ScrollToTopButton = () => {
   }, []);
 
   return (
-    <motion.div
-      className="scroll-to-top"
+    <div
+      className={`scroll-to-top ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-full'} transition-all duration-300`}
       onClick={scrollToTop}
-      initial={{ opacity: 0, y: 50 }}
-      animate={{ opacity: isVisible ? 1 : 0, y: isVisible ? 0 : 50 }}
-      transition={{ duration: 0.3 }}
       aria-label="Scroll to top"
     >
       ⬆️
-    </motion.div>
+    </div>
   );
 };
 
 export default function Home() {
   const [mounted, setMounted] = useState(false);
-  const [showParticleText, setShowParticleText] = useState(true);
-  const { theme, toggleTheme } = useTheme();
+  // const [showParticleText, setShowParticleText] = useState(true);
+  // const { theme, toggleTheme } = useTheme();
 
   // Embedded gradient placeholder for images (SVG as data URL)
   const placeholder = 'data:image/svg+xml;utf8,' + encodeURIComponent(`
@@ -112,11 +109,11 @@ export default function Home() {
     setMounted(true);
     
     // Switch between 3D scene and particle text every 10 seconds
-    const interval = setInterval(() => {
-      setShowParticleText(prev => !prev);
-    }, 10000);
+    // const interval = setInterval(() => {
+    //   setShowParticleText(prev => !prev);
+    // }, 10000);
     
-    return () => clearInterval(interval);
+    // return () => clearInterval(interval);
   }, []);
 
   // Implement intersection observer for lazy loading
@@ -187,13 +184,13 @@ export default function Home() {
 
   return (
     <div className="min-h-screen hero-gradient text-white">
-      {mounted && <AnimatedCursor />}
+      {/* {mounted && <AnimatedCursor />} */}
       <Navbar />
-      <ThemeToggle />
+      {/* <ThemeToggle /> */}
       
       {/* Hero Section */}
       <section id="home" className="relative h-screen flex items-center justify-center overflow-hidden">
-        {mounted && (
+        {/* {mounted && (
           <div className="absolute inset-0">
             <AnimatePresence mode="wait">
               {showParticleText ? (
@@ -221,37 +218,25 @@ export default function Home() {
               )}
             </AnimatePresence>
           </div>
-        )}
+        )} */}
 
         <div className="relative z-10 text-center">
-          <motion.p
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+          <p
             className="text-sm uppercase tracking-widest text-gray-300 mb-2"
           >
             Hey! I am
-          </motion.p>
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+          </p>
+          <h1
             className="text-6xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600"
           >
             Tushar Jain
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+          </h1>
+          <p
             className="text-2xl text-gray-200"
           >
             I'm a Full Stack Developer
-          </motion.p>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
+          </p>
+          <div
             className="mt-8"
           >
             <a 
@@ -260,57 +245,38 @@ export default function Home() {
             >
               View My Work
             </a>
-          </motion.div>
+          </div>
         </div>
       </section>
 
-      {/* About Section with Parallax */}
-      <ParallaxSection 
-        id="about"
-        backgroundImage="/images/image_6.jpg"
-        height="auto"
-        className="py-24"
-      >
-        <motion.h2
-          initial={{ opacity: 0, x: -20 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
+      {/* About Section */}
+      <section id="about" className="py-24 bg-gray-900">
+        <h2
           className="text-4xl font-bold mb-8 text-center"
         >
           About Me
-        </motion.h2>
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+        </h2>
+        <p
           className="text-lg text-gray-300 max-w-3xl mx-auto text-center"
         >
             As a passionate Full Stack Developer, I thrive on building impactful digital experiences.
             My expertise spans modern web technologies, where I focus on crafting robust, scalable, and intuitive applications.
             I am driven by a desire to combine innovative solutions with clean code, delivering projects that are both highly functional and a joy to use.
-          </motion.p>
-          <div className="grid md:grid-cols-2 gap-6 mt-10 max-w-4xl mx-auto">
-            <div className="card">
-              <ul className="space-y-2 text-gray-300">
-                <li><span className="text-white font-semibold">Name:</span> Tushar Jain</li>
-                <li><span className="text-white font-semibold">Email:</span> tusharjain1911@gmail.com</li>
-                <li><span className="text-white font-semibold">Phone:</span> +91-xxxxxxxxxx</li>
-              </ul>
-            </div>
-            <div className="card">
-              <ul className="space-y-2 text-gray-300">
-                <li><span className="text-white font-semibold">Address:</span> Mumbai, India</li>
-                <li><span className="text-white font-semibold">Role:</span> Full Stack Developer</li>
-                <li><span className="text-white font-semibold">Freelance:</span> Available</li>
-              </ul>
-            </div>
+          </p>
+          <div className="max-w-3xl mx-auto mt-10 text-gray-300">
+            <p><span className="text-white font-semibold">Name:</span> Tushar Jain</p>
+            <p><span className="text-white font-semibold">Email:</span> tusharjain1911@gmail.com</p>
+            <p><span className="text-white font-semibold">Phone:</span> +91-xxxxxxxxxx</p>
+            <p><span className="text-white font-semibold">Address:</span> Mumbai, India</p>
+            <p><span className="text-white font-semibold">Role:</span> Full Stack Developer</p>
+            <p><span className="text-white font-semibold">Freelance:</span> Available</p>
           </div>
           <div className="text-center mt-8">
             <a href="/cv.pdf" className="inline-block bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors" download>
               Download CV
             </a>
           </div>
-      </ParallaxSection>
+      </section>
 
       {/* Freelancing CTA */}
       <section className="py-20 bg-gray-800">
@@ -325,91 +291,93 @@ export default function Home() {
       <section id="resume" className="py-24 bg-gray-900 relative">
         <div className="absolute inset-0 bg-black bg-opacity-80"></div>
         <div className="container mx-auto px-4 relative z-10">
-          <motion.h2
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+          <h2
             className="text-4xl font-bold mb-8 text-center"
           >
             Resume
-          </motion.h2>
+          </h2>
           {mounted && <ResumeTabs />}
         </div>
       </section>
 
-      {/* Skills Section with Grid */}
+      {/* Skills Section */}
       <section id="skills" className="relative py-24 bg-gray-900">
         <div className="absolute inset-0 bg-black bg-opacity-80"></div>
         <div className="container mx-auto px-4 relative z-10">
-          <motion.h2
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+          <h2
             className="text-4xl font-bold mb-16 text-center"
           >
             My Skills
-          </motion.h2>
+          </h2>
           
-          {mounted && <SkillsGrid skills={skills} />}
+          <div className="flex flex-wrap justify-center gap-4">
+            {skills.map((skill, index) => (
+              <span
+                key={index}
+                className="bg-gray-700 text-white px-4 py-2 rounded-full text-lg"
+              >
+                {skill}
+              </span>
+            ))}
+          </div>
           
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <p
             className="text-lg text-gray-300 max-w-3xl mx-auto mt-16 text-center"
           >
             These are the core technologies I work with. I&apos;m constantly learning and adding new skills to my toolkit.
-          </motion.p>
+          </p>
         </div>
       </section>
 
-      {/* Projects Section with Grid */}
+      {/* Projects Section */}
       <section id="projects" className="py-24 relative">
         <div className="absolute inset-0 bg-gradient-to-br from-blue-900/60 via-black/70 to-purple-900/60"></div>
         <div className="container mx-auto px-4 relative z-10">
-          <motion.h2
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+          <h2
             className="text-4xl font-bold mb-16 text-center"
           >
             Featured Projects
-          </motion.h2>
+          </h2>
           
-          {mounted && <ProjectGrid projects={projects} />}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {projects.map((project, index) => (
+              <div
+                key={index}
+                className="bg-gray-800 rounded-lg shadow-lg overflow-hidden"
+              >
+                <div className="p-6">
+                  <h3 className="text-2xl font-semibold mb-2">{project.title}</h3>
+                  <p className="text-gray-300 mb-4">{project.description}</p>
+                  <a
+                    href={project.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-block bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors"
+                  >
+                    View Project
+                  </a>
+                </div>
+              </div>
+            ))}
+          </div>
           
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <p
             className="text-lg text-gray-300 max-w-3xl mx-auto mt-16 text-center"
           >
             These projects showcase my skills and experience in building modern web applications.
-          </motion.p>
+          </p>
         </div>
       </section>
 
       {/* Contact Section */}
-      <ParallaxSection 
-        id="contact"
-        backgroundImage={undefined}
-        height="auto"
-        className="py-24"
-        speed={0.3}
-      >
-        <motion.h2
-          initial={{ opacity: 0, x: -20 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
+      <section id="contact" className="py-24 bg-gray-900">
+        <h2
           className="text-4xl font-bold mb-8 text-center"
         >
           Get in Touch
-        </motion.h2>
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="card max-w-2xl mx-auto"
+        </h2>
+        <div
+          className="max-w-2xl mx-auto text-center"
         >
           <p className="text-lg mb-4 text-center">
             I&apos;m always open to new opportunities and collaborations.
@@ -438,8 +406,8 @@ export default function Home() {
               LinkedIn
             </a>
           </div>
-        </motion.div>
-      </ParallaxSection>
+        </div>
+      </section>
 
       {/* Footer */}
       <footer className="bg-gray-900 py-8">
@@ -450,4 +418,4 @@ export default function Home() {
       <ScrollToTopButton />
     </div>
   );
-} 
+}
