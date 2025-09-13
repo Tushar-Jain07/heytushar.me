@@ -262,9 +262,6 @@ export default function Home() {
             <p><span className="text-white font-semibold">Role:</span> Full Stack Developer</p>
             <p><span className="text-white font-semibold">Freelance:</span> Available</p>
           </div>
-          <div className="text-center mt-8">
-            <a href="/Tushar_Jain_Resume.pdf" target="_blank" rel="noopener noreferrer" className="inline-block bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors">Download Resume</a>
-          </div>
       </section>
 
       {/* Freelancing CTA */}
