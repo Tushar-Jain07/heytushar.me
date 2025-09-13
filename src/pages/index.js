@@ -160,12 +160,6 @@ export default function Home() {
       image: placeholder
     },
     {
-      title: 'Virtual Art Gallery',
-      description: 'Interactive 3D gallery showcasing digital artwork. Visitors can explore exhibitions in a virtual space with immersive audio-visual experiences.',
-      url: 'https://github.com/Tushar-Jain07',
-      image: placeholder
-    },
-    {
       title: 'Blockchain Voting App',
       description: 'Secure and transparent voting application built on blockchain technology. Ensures tamper-proof elections with real-time results.',
       url: 'https://github.com/Tushar-Jain07',
