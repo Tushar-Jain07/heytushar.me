@@ -36,7 +36,7 @@ import Image from 'next/image';
 // });
 
 const Navbar = dynamic(() => import('../components/Navbar'), { ssr: false });
-const ResumeTabs = dynamic(() => import('../components/ResumeTabs'), { ssr: false });
+// const ResumeTabs = dynamic(() => import('../components/ResumeTabs'), { ssr: false });
 
 // const ThemeToggle = () => {
 //   const { theme, toggleTheme } = useTheme();
@@ -174,12 +174,10 @@ export default function Home() {
   ];
 
   const skills = [
-    'React', 'JavaScript', 'TypeScript', 
+    'React', 'JavaScript', 'TypeScript',
     'Node.js', 'Python',
     'TailwindCSS', 'GraphQL',
-    'MongoDB', 'PostgreSQL',
-    'Docker',
-    'Framer Motion'
+    'MongoDB',
   ];
 
   return (
@@ -288,7 +286,7 @@ export default function Home() {
       </section>
 
       {/* Resume Section */}
-      <section id="resume" className="py-24 bg-gray-900 relative">
+      {/* <section id="resume" className="py-24 bg-gray-900 relative">
         <div className="absolute inset-0 bg-black bg-opacity-80"></div>
         <div className="container mx-auto px-4 relative z-10">
           <h2
@@ -298,7 +296,7 @@ export default function Home() {
           </h2>
           {mounted && <ResumeTabs />}
         </div>
-      </section>
+      </section> */}
 
       {/* Skills Section */}
       <section id="skills" className="relative py-24 bg-gray-900">
@@ -321,11 +319,11 @@ export default function Home() {
             ))}
           </div>
           
-          <p
+          {/* <p
             className="text-lg text-gray-300 max-w-3xl mx-auto mt-16 text-center"
           >
             These are the core technologies I work with. I&apos;m constantly learning and adding new skills to my toolkit.
-          </p>
+          </p> */}
         </div>
       </section>
 
@@ -343,16 +341,16 @@ export default function Home() {
             {projects.map((project, index) => (
               <div
                 key={index}
-                className="bg-gray-800 rounded-lg shadow-lg overflow-hidden"
+                className=\"bg-gray-800 rounded-lg shadow-lg overflow-hidden\"
               >
-                <div className="p-6">
-                  <h3 className="text-2xl font-semibold mb-2">{project.title}</h3>
-                  <p className="text-gray-300 mb-4">{project.description}</p>
+                <div className=\"p-6\">
+                  <h3 className=\"text-2xl font-semibold mb-2\">{project.title}</h3>
+                  <p className=\"text-gray-300 mb-4\">{project.description}</p>
                   <a
                     href={project.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-block bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors"
+                    target=\"_blank\"
+                    rel=\"noopener noreferrer\"
+                    className=\"inline-block bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors\"
                   >
                     View Project
                   </a>
@@ -360,12 +358,12 @@ export default function Home() {
               </div>
             ))}
           </div>
-          
-          <p
-            className="text-lg text-gray-300 max-w-3xl mx-auto mt-16 text-center"
+
+          {/* <p
+            className=\"text-lg text-gray-300 max-w-3xl mx-auto mt-16 text-center\"
           >
             These projects showcase my skills and experience in building modern web applications.
-          </p>
+          </p> */}
         </div>
       </section>
 
@@ -419,3 +417,15 @@ export default function Home() {
     </div>
   );
 }
+
+      {/* Education Section */}
+      <section id="education" className="py-16 bg-white">
+        <div className="container mx-auto px-4 max-w-3xl">
+          <h2 className="text-3xl font-bold mb-8 text-center text-gray-800">Education</h2>
+          <div className="space-y-8">
+            <div>
+              <h3 className="text-xl font-semibold text-gray-700">BTech CSE from SVGU Ahmedabad</h3>
+            </div>
+          </div>
+        </div>
+      </section>
