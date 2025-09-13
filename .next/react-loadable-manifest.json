@@ -1,14 +1,1 @@
-{
-  "pages\\index.js -> ../components/Navbar": {
-    "id": "pages\\index.js -> ../components/Navbar",
-    "files": [
-      "static/chunks/src_components_Navbar_js.js"
-    ]
-  },
-  "pages\\index.js -> ../components/ResumeTabs": {
-    "id": "pages\\index.js -> ../components/ResumeTabs",
-    "files": [
-      "static/chunks/src_components_ResumeTabs_js.js"
-    ]
-  }
-}
+{}
