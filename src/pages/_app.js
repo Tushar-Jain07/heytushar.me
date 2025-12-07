@@ -65,7 +65,6 @@ function MyApp({ Component, pageProps, router }) {
         <meta property="og:title" content="Tushar Jain | Full Stack Developer" />
         <meta property="og:description" content="Portfolio of Tushar Jain, a Full Stack Developer specializing in React, Next.js, Three.js, and modern web technologies." />
         <meta property="og:type" content="website" />
-        <link rel="icon" href="/images/favicon.ico" />
       </Head>
       {mounted && (
         <AnimatePresence mode="wait" initial={false}>
