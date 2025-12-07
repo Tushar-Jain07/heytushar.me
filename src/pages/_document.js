@@ -46,7 +46,6 @@ export default function Document() {
         <meta name="apple-mobile-web-app-title" content="Tushar Jain" />
         <meta name="format-detection" content="telephone=no" />
         <meta name="mobile-web-app-capable" content="yes" />
-        <meta name="theme-color" content="#3b82f6" />
         
         {/* Favicon */}
         <link rel="icon" type="image/x-icon" href="/favicon.ico" />
