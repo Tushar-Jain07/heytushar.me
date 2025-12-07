@@ -8,7 +8,9 @@ export const ThemeContext = createContext({
   theme: 'dark',
   toggleTheme: () => {},
   systemTheme: 'dark',
-  setTheme: (theme) => {},
+  setTheme: (theme) => {
+    // Default implementation
+  },
 });
 
 export const useTheme = () => useContext(ThemeContext);
