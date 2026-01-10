@@ -4,7 +4,6 @@ import dynamic from 'next/dynamic';
 const Navbar = dynamic(() => import('../components/Navbar'), { ssr: false });
 const ResumeTabs = dynamic(() => import('../components/ResumeTabs'), { ssr: false });
 const ContactForm = dynamic(() => import('../components/ContactForm'), { ssr: false });
-const ProjectGrid = dynamic(() => import('../components/ProjectGrid'), { ssr: false });
 
 
 const ScrollToTopButton = () => {
@@ -121,22 +120,19 @@ export default function Home() {
       title: '3D E-Commerce Platform',
       description: 'An immersive shopping experience with 3D product visualization. Users can interact with products in a virtual environment before making purchase decisions.',
       url: 'https://github.com/Tushar-Jain07',
-      image: placeholder,
-      technologies: ['React', 'Three.js', 'Next.js', 'Node.js']
+      image: placeholder
     },
     {
       title: 'AI-Powered Dashboard',
       description: 'Real-time analytics dashboard with machine learning insights. Provides predictive analytics and data visualization for business intelligence.',
       url: 'https://github.com/Tushar-Jain07/ai-powered-dashboard',
-      image: placeholder,
-      technologies: ['React', 'Python', 'TensorFlow', 'MongoDB']
+      image: placeholder
     },
     {
       title: 'Blockchain Voting App',
       description: 'Secure and transparent voting application built on blockchain technology. Ensures tamper-proof elections with real-time results.',
       url: 'https://github.com/Tushar-Jain07',
-      image: placeholder,
-      technologies: ['Solidity', 'Web3.js', 'React', 'Ethereum']
+      image: placeholder
     }
   ];
 
@@ -276,7 +272,25 @@ export default function Home() {
           </h2>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <ProjectGrid projects={projects} />
+            {projects.map((project, index) => (
+              <div
+                key={index}
+                className="bg-gray-800 rounded-lg shadow-lg overflow-hidden"
+              >
+                <div className="p-6">
+                  <h3 className="text-2xl font-semibold mb-2">{project.title}</h3>
+                  <p className="text-gray-300 mb-4">{project.description}</p>
+                  <a
+                    href={project.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-block bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors"
+                  >
+                    View Project
+                  </a>
+                </div>
+              </div>
+            ))}
           </div>
 
           {/* <p
