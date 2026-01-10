@@ -1,18 +1,41 @@
-# Raj Portfolio
+# Tushar Jain - Full Stack Developer Portfolio
 
 ## Description
-This is a portfolio website, likely built using Next.js and Tailwind CSS, showcasing various projects. It appears to be designed to present information about an AI-powered dashboard with a React frontend and Node.js backend.
+A modern, responsive portfolio website built with Next.js, React, and Tailwind CSS. Features smooth animations, mobile-friendly navigation, and comprehensive SEO optimization.
 
 ## Features
-- Responsive design for various devices.
-- Showcase of projects, potentially including an AI-powered dashboard.
-- Clear navigation for different sections of the portfolio.
+✨ **User Experience**
+- Fully responsive design for all devices (mobile, tablet, desktop)
+- Mobile hamburger menu with smooth transitions
+- Smooth scroll animations with Intersection Observer API
+- Fade-in effects for sections as they enter viewport
+- Scroll-to-top button for easy navigation
+
+📧 **Contact Form**
+- Interactive contact form with validation
+- Real-time error feedback
+- Email integration (mailto fallback)
+
+🎨 **Design**
+- Modern gradient hero section
+- Clean, professional UI with Tailwind CSS
+- Consistent color scheme and typography
+- Accessibility-focused design
+
+🚀 **Performance & SEO**
+- Comprehensive meta tags (Open Graph, Twitter Cards)
+- Progressive Web App (PWA) support with manifest
+- Optimized for search engines (robots.txt, sitemap.xml)
+- Fast loading with Next.js optimization
+- Image optimization ready
 
 ## Technologies Used
-- Next.js
-- React
-- Node.js
-- Tailwind CSS
+- **Framework:** Next.js 14.2
+- **UI Library:** React 18.3
+- **Styling:** Tailwind CSS 3.4
+- **Animation:** Framer Motion 11.11
+- **3D Graphics:** Three.js (optional)
+- **Build Tool:** Node.js
 
 ## Setup and Installation
 
@@ -67,4 +90,48 @@ To start the production server:
 npm run start
 # or
 yarn start
-``` 
+```
+
+## Recent Updates (December 2025)
+
+### Improvements Implemented
+1. ✅ **Mobile Navigation** - Added responsive hamburger menu
+2. ✅ **Contact Form** - Interactive form with validation
+3. ✅ **SEO Optimization** - Meta tags, Open Graph, Twitter Cards
+4. ✅ **Animations** - Smooth fade-in effects for sections
+5. ✅ **Dependencies** - Updated React, Tailwind, and other packages
+6. ✅ **Code Cleanup** - Removed dead code and improved structure
+7. ✅ **PWA Support** - Added manifest and theme colors
+8. ✅ **SEO Files** - robots.txt and sitemap.xml
+
+## Project Structure
+
+```
+Raj Portfolio/
+├── public/
+│   ├── robots.txt              # SEO robots file
+│   ├── sitemap.xml             # Sitemap for search engines
+│   └── site.webmanifest        # PWA manifest
+├── src/
+│   ├── components/
+│   │   ├── ContactForm.js      # Contact form with validation
+│   │   ├── Navbar.js           # Navigation with mobile menu
+│   │   ├── ResumeTabs.js       # Resume section tabs
+│   │   └── ...
+│   ├── pages/
+│   │   ├── _app.js             # App wrapper
+│   │   ├── _document.js        # HTML document with SEO tags
+│   │   └── index.js            # Main homepage
+│   └── styles/
+│       └── globals.css         # Global styles and animations
+├── package.json
+└── README.md
+```
+
+## Contributing
+
+Feel free to fork this repository and customize it for your own portfolio!
+
+## License
+
+This project is open source and available under the MIT License.
