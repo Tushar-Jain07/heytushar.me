@@ -12,6 +12,7 @@
     "@react-three/fiber": "^8.17.10",
     "framer-motion": "^11.11.17",
     "next": "^14.2.30",
+    "nodemailer": "^7.0.12",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "three": "^0.171.0"

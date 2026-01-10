@@ -1,54 +1,11 @@
 import { useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
-// import { motion, AnimatePresence } from 'framer-motion';
-import { useTheme } from '../pages/_app';
-import Image from 'next/image';
-
-// Dynamically import components with no SSR
-// const ThreeScene = dynamic(() => import('../components/ThreeScene'), {
-//   ssr: false,
-//   loading: () => <div className="w-full h-full bg-gray-900" />
-// });
-
-// const ParticleText = dynamic(() => import('../components/ParticleText'), {
-//   ssr: false,
-//   loading: () => <div className="w-full h-full flex items-center justify-center">
-//     <div className="loading-spinner"></div>
-//   </div>
-// });
-
-// const AnimatedCursor = dynamic(() => import('../components/AnimatedCursor'), {
-//   ssr: false
-// });
-
-// const SkillsGrid = dynamic(() => import('../components/SkillsGrid'), {
-//   ssr: false,
-//   loading: () => <div className="w-full h-[500px] bg-gray-900 rounded-lg animate-pulse" />
-// });
-
-// const ParallaxSection = dynamic(() => import('../components/ParallaxSection'), {
-//   ssr: false
-// });
-
-// const ProjectGrid = dynamic(() => import('../components/ProjectGrid'), {
-//   ssr: false,
-//   loading: () => <div className="w-full h-[600px] bg-gray-900 rounded-lg animate-pulse" />
-// });
 
 const Navbar = dynamic(() => import('../components/Navbar'), { ssr: false });
 const ResumeTabs = dynamic(() => import('../components/ResumeTabs'), { ssr: false });
+const ContactForm = dynamic(() => import('../components/ContactForm'), { ssr: false });
+const ProjectGrid = dynamic(() => import('../components/ProjectGrid'), { ssr: false });
 
-// const ThemeToggle = () => {
-//   const { theme, toggleTheme } = useTheme();
-
-//   return (
-//     <div className="theme-toggle" onClick={toggleTheme} aria-label="Toggle theme">
-//       {theme === 'dark' ? '💡' : '🌙'}
-//     </div>
-//   );
-// };
-
-// Temporary comment to force Vercel re-build
 
 const ScrollToTopButton = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -88,8 +45,8 @@ const ScrollToTopButton = () => {
 
 export default function Home() {
   const [mounted, setMounted] = useState(false);
-  // const [showParticleText, setShowParticleText] = useState(true);
-  // const { theme, toggleTheme } = useTheme();
+  const [visibleSections, setVisibleSections] = useState({});
+  const [activeSection, setActiveSection] = useState('home');
 
   // Embedded gradient placeholder for images (SVG as data URL)
   const placeholder = 'data:image/svg+xml;utf8,' + encodeURIComponent(`
@@ -107,40 +64,53 @@ export default function Home() {
 
   useEffect(() => {
     setMounted(true);
-    
-    // Switch between 3D scene and particle text every 10 seconds
-    // const interval = setInterval(() => {
-    //   setShowParticleText(prev => !prev);
-    // }, 10000);
-    
-    // return () => clearInterval(interval);
   }, []);
 
-  // Implement intersection observer for lazy loading
+  // Implement intersection observer for animations
   useEffect(() => {
     if (typeof window !== 'undefined' && 'IntersectionObserver' in window) {
-      const lazyElements = document.querySelectorAll('.lazy-load');
-      
+      const sections = document.querySelectorAll('.fade-in-section');
+      let currentSectionId = 'home';
+
+      const navOrder = [
+        'home',
+        'about',
+        'resume',
+        'skills',
+        'projects',
+        'contact',
+      ];
+
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
-            entry.target.classList.remove('lazy-load');
-            entry.target.classList.remove('lazy-placeholder');
-            observer.unobserve(entry.target);
+            setVisibleSections(prev => ({
+              ...prev,
+              [entry.target.id]: true
+            }));
+            // track section order for scroll spy
+            currentSectionId = entry.target.id;
+            // logic: visible entries sorted by page order, not arbitrary entry order
+            // Find top-most visible section by scroll order
+            const visibleNow = entries.filter(e => e.isIntersecting).map(e => e.target.id);
+            if (visibleNow.length > 0) {
+              let topSection = navOrder.find(section => visibleNow.includes(section));
+              if (topSection) setActiveSection(topSection);
+            }
           }
         });
       }, {
-        rootMargin: '200px', // Load when within 200px of viewport
-        threshold: 0.1
+        threshold: 0.1,
+        rootMargin: '0px 0px -100px 0px'
       });
-      
-      lazyElements.forEach(element => {
-        observer.observe(element);
+
+      sections.forEach(section => {
+        observer.observe(section);
       });
-      
+
       return () => {
-        lazyElements.forEach(element => {
-          observer.unobserve(element);
+        sections.forEach(section => {
+          observer.unobserve(section);
         });
       };
     }
@@ -151,19 +121,22 @@ export default function Home() {
       title: '3D E-Commerce Platform',
       description: 'An immersive shopping experience with 3D product visualization. Users can interact with products in a virtual environment before making purchase decisions.',
       url: 'https://github.com/Tushar-Jain07',
-      image: placeholder
+      image: placeholder,
+      technologies: ['React', 'Three.js', 'Next.js', 'Node.js']
     },
     {
       title: 'AI-Powered Dashboard',
       description: 'Real-time analytics dashboard with machine learning insights. Provides predictive analytics and data visualization for business intelligence.',
       url: 'https://github.com/Tushar-Jain07/ai-powered-dashboard',
-      image: placeholder
+      image: placeholder,
+      technologies: ['React', 'Python', 'TensorFlow', 'MongoDB']
     },
     {
       title: 'Blockchain Voting App',
       description: 'Secure and transparent voting application built on blockchain technology. Ensures tamper-proof elections with real-time results.',
       url: 'https://github.com/Tushar-Jain07',
-      image: placeholder
+      image: placeholder,
+      technologies: ['Solidity', 'Web3.js', 'React', 'Ethereum']
     }
   ];
 
@@ -176,61 +149,22 @@ export default function Home() {
 
   return (
     <div className="min-h-screen hero-gradient text-white">
-      {/* {mounted && <AnimatedCursor />} */}
-      <Navbar />
-      {/* <ThemeToggle /> */}
+      <Navbar activeSection={activeSection} />
       
       {/* Hero Section */}
       <section id="home" className="relative h-screen flex items-center justify-center overflow-hidden">
-        {/* {mounted && (
-          <div className="absolute inset-0">
-            <AnimatePresence mode="wait">
-              {showParticleText ? (
-                <motion.div
-                  key="particleText"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 1 }}
-                  className="w-full h-full"
-                >
-                  <ParticleText text="TUSHAR JAIN" />
-                </motion.div>
-              ) : (
-                <motion.div
-                  key="threeScene"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 1 }}
-                  className="w-full h-full"
-                >
-                  <ThreeScene />
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
-        )} */}
 
-        <div className="relative z-10 text-center">
-          <p
-            className="text-sm uppercase tracking-widest text-gray-300 mb-2"
-          >
+        <div className="relative z-10 text-center animate-fade-in">
+          <p className="text-sm uppercase tracking-widest text-gray-300 mb-2">
             Hey! I am
           </p>
-          <h1
-            className="text-6xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600"
-          >
+          <h1 className="text-6xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600">
             Tushar Jain
           </h1>
-          <p
-            className="text-2xl text-gray-200"
-          >
+          <p className="text-2xl text-gray-200">
             I'm a Full Stack Developer
           </p>
-          <div
-            className="mt-8"
-          >
+          <div className="mt-8">
             <a 
               href="#projects" 
               className="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors"
@@ -242,7 +176,11 @@ export default function Home() {
       </section>
 
       {/* About Section */}
-      <section id="about" className="py-24 bg-gray-900">
+      <section id="about" className="fade-in-section py-24 bg-gray-900" style={{
+        opacity: visibleSections['about'] ? 1 : 0,
+        transform: visibleSections['about'] ? 'translateY(0)' : 'translateY(30px)',
+        transition: 'opacity 0.6s ease-out, transform 0.6s ease-out'
+      }}>
         <h2
           className="text-4xl font-bold mb-8 text-center"
         >
@@ -274,7 +212,11 @@ export default function Home() {
       </section>
 
       {/* Resume Section */}
-      <section id="resume" className="py-24 bg-gray-900 relative">
+      <section id="resume" className="fade-in-section py-24 bg-gray-900 relative" style={{
+        opacity: visibleSections['resume'] ? 1 : 0,
+        transform: visibleSections['resume'] ? 'translateY(0)' : 'translateY(30px)',
+        transition: 'opacity 0.6s ease-out, transform 0.6s ease-out'
+      }}>
         <div className="absolute inset-0 bg-black bg-opacity-80"></div>
         <div className="container mx-auto px-4 relative z-10">
           <h2
@@ -287,7 +229,11 @@ export default function Home() {
       </section>
 
       {/* Skills Section */}
-      <section id="skills" className="relative py-24 bg-gray-900">
+      <section id="skills" className="fade-in-section relative py-24 bg-gray-900" style={{
+        opacity: visibleSections['skills'] ? 1 : 0,
+        transform: visibleSections['skills'] ? 'translateY(0)' : 'translateY(30px)',
+        transition: 'opacity 0.6s ease-out, transform 0.6s ease-out'
+      }}>
         <div className="absolute inset-0 bg-black bg-opacity-80"></div>
         <div className="container mx-auto px-4 relative z-10">
           <h2
@@ -316,7 +262,11 @@ export default function Home() {
       </section>
 
       {/* Projects Section */}
-      <section id="projects" className="py-24 relative">
+      <section id="projects" className="fade-in-section py-24 relative" style={{
+        opacity: visibleSections['projects'] ? 1 : 0,
+        transform: visibleSections['projects'] ? 'translateY(0)' : 'translateY(30px)',
+        transition: 'opacity 0.6s ease-out, transform 0.6s ease-out'
+      }}>
         <div className="absolute inset-0 bg-gradient-to-br from-blue-900/60 via-black/70 to-purple-900/60"></div>
         <div className="container mx-auto px-4 relative z-10">
           <h2
@@ -326,25 +276,7 @@ export default function Home() {
           </h2>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {projects.map((project, index) => (
-              <div
-                key={index}
-                className="bg-gray-800 rounded-lg shadow-lg overflow-hidden"
-              >
-                <div className="p-6">
-                  <h3 className="text-2xl font-semibold mb-2">{project.title}</h3>
-                  <p className="text-gray-300 mb-4">{project.description}</p>
-                  <a
-                    href={project.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-block bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors"
-                  >
-                    View Project
-                  </a>
-                </div>
-              </div>
-            ))}
+            <ProjectGrid projects={projects} />
           </div>
 
           {/* <p
@@ -356,41 +288,57 @@ export default function Home() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-24 bg-gray-900">
-        <h2
-          className="text-4xl font-bold mb-8 text-center"
-        >
+      <section id="contact" className="fade-in-section py-24 bg-gray-900" style={{
+        opacity: visibleSections['contact'] ? 1 : 0,
+        transform: visibleSections['contact'] ? 'translateY(0)' : 'translateY(30px)',
+        transition: 'opacity 0.6s ease-out, transform 0.6s ease-out'
+      }}>
+        <h2 className="text-4xl font-bold mb-8 text-center">
           Get in Touch
         </h2>
-        <div
-          className="max-w-2xl mx-auto text-center"
-        >
-          <p className="text-lg mb-4 text-center">
-            I&apos;m always open to new opportunities and collaborations.
+        <div className="max-w-4xl mx-auto">
+          <p className="text-lg mb-8 text-center text-gray-300">
+            I&apos;m always open to new opportunities and collaborations. Feel free to reach out!
           </p>
-          <div className="flex flex-wrap gap-4 justify-center">
-            <a
-              href="mailto:tusharjain1911@gmail.com"
-              className="inline-block bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-colors"
-            >
-              Email Me
-            </a>
-            <a
-              href="https://github.com/Tushar-Jain07"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block bg-gray-700 text-white px-8 py-3 rounded-lg hover:bg-gray-600 transition-colors"
-            >
-              GitHub
-            </a>
-            <a
-              href="https://www.linkedin.com/in/tushar-jain-a5b54131b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block bg-blue-700 text-white px-8 py-3 rounded-lg hover:bg-blue-800 transition-colors"
-            >
-              LinkedIn
-            </a>
+          
+          {mounted && <ContactForm />}
+          
+          <div className="mt-12">
+            <h3 className="text-2xl font-semibold mb-6 text-center">Or connect with me on</h3>
+            <div className="flex flex-wrap gap-4 justify-center">
+              <a
+                href="mailto:tusharjain1911@gmail.com"
+                className="inline-flex items-center gap-2 bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors"
+              >
+                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+                  <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+                </svg>
+                Email
+              </a>
+              <a
+                href="https://github.com/Tushar-Jain07"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 bg-gray-700 text-white px-6 py-3 rounded-lg hover:bg-gray-600 transition-colors"
+              >
+                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" />
+                </svg>
+                GitHub
+              </a>
+              <a
+                href="https://www.linkedin.com/in/tushar-jain-a5b54131b"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 bg-blue-700 text-white px-6 py-3 rounded-lg hover:bg-blue-800 transition-colors"
+              >
+                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M16.338 16.338H13.67V12.16c0-.995-.017-2.277-1.387-2.277-1.39 0-1.601 1.086-1.601 2.207v4.248H8.014v-8.59h2.559v1.174h.037c.356-.675 1.227-1.387 2.526-1.387 2.703 0 3.203 1.778 3.203 4.092v4.711zM5.005 6.575a1.548 1.548 0 11-.003-3.096 1.548 1.548 0 01.003 3.096zm-1.337 9.763H6.34v-8.59H3.667v8.59zM17.668 1H2.328C1.595 1 1 1.581 1 2.298v15.403C1 18.418 1.595 19 2.328 19h15.34c.734 0 1.332-.582 1.332-1.299V2.298C19 1.581 18.402 1 17.668 1z" clipRule="evenodd" />
+                </svg>
+                LinkedIn
+              </a>
+            </div>
           </div>
         </div>
       </section>
@@ -405,15 +353,3 @@ export default function Home() {
     </div>
   );
 }
-
-      {/* Education Section */}
-      <section id="education" className="py-16 bg-white">
-        <div className="container mx-auto px-4 max-w-3xl">
-          <h2 className="text-3xl font-bold mb-8 text-center text-gray-800">Education</h2>
-          <div className="space-y-8">
-            <div>
-              <h3 className="text-xl font-semibold text-gray-700">BTech CSE from SVGU Ahmedabad</h3>
-            </div>
-          </div>
-        </div>
-      </section>
