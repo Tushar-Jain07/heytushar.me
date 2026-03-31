@@ -7,12 +7,11 @@ export default function ResumeTabs() {
 
 	return (
 		<div className="max-w-6xl mx-auto">
-			{/* Download Resume Button */}
 			<div className="text-center mb-8">
-				<a 
-					href="/Tushar_Jain_Resume.pdf" 
-					target="_blank" 
-					rel="noopener noreferrer" 
+				<a
+					href="/Raj-CV.docx"
+					target="_blank"
+					rel="noopener noreferrer"
 					className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
 				>
 					<svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -44,10 +43,10 @@ export default function ResumeTabs() {
 				{active === 'Skills' && (
 					<div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 max-w-4xl mx-auto">
 						{[
-							['React & Next.js', '90%', 'Frontend Development'],
-							['Node.js & Express', '85%', 'Backend Development'],
+							['Java', '90%', 'Programming Language'],
+							['C', '85%', 'Programming Language'],
 							['Python & Flask', '90%', 'Backend & Data Science'],
-							['MongoDB & SQL', '85%', 'Database Management'],
+							['C++', '85%', 'Programming Language'],
 							['JavaScript & TypeScript', '90%', 'Programming Languages'],
 							['Git & GitHub', '85%', 'Version Control']
 						].map(([name, pct, category]) => (

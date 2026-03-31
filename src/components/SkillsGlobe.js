@@ -5,9 +5,10 @@ import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry';
 import { FontLoader } from 'three/examples/jsm/loaders/FontLoader';
 
 const SkillsGlobe = ({ skills = [
-  'React', 'Next.js', 'Three.js', 'JavaScript', 'TypeScript', 
-  'Node.js', 'MongoDB', 'GraphQL', 'TailwindCSS', 'Framer Motion',
-  'Python', 'Django', 'AWS', 'Docker', 'Git', 'CI/CD'
+  'JavaScript', 'TypeScript', 'Python',
+  'C', 'C++', 'Java',
+  'Three.js', 'TailwindCSS', 'Framer Motion',
+  'Django', 'AWS', 'Docker', 'Git', 'CI/CD'
 ] }) => {
   const containerRef = useRef(null);
   const sceneRef = useRef(null);

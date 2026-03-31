@@ -117,30 +117,23 @@ export default function Home() {
 
   const projects = [
     {
-      title: '3D E-Commerce Platform',
-      description: 'An immersive shopping experience with 3D product visualization. Users can interact with products in a virtual environment before making purchase decisions.',
-      url: 'https://github.com/Tushar-Jain07',
-      image: placeholder
-    },
-    {
       title: 'AI-Powered Dashboard',
       description: 'Real-time analytics dashboard with machine learning insights. Provides predictive analytics and data visualization for business intelligence.',
       url: 'https://github.com/Tushar-Jain07/ai-powered-dashboard',
       image: placeholder
     },
     {
-      title: 'Blockchain Voting App',
-      description: 'Secure and transparent voting application built on blockchain technology. Ensures tamper-proof elections with real-time results.',
-      url: 'https://github.com/Tushar-Jain07',
+      title: 'Calorie Tracker',
+      description: 'A fitness-focused app to log daily meals, monitor calorie intake, and track progress toward health goals with a clean dashboard experience.',
+      url: 'https://github.com/Tushar-Jain07/calorie-tracker',
       image: placeholder
     }
   ];
 
   const skills = [
-    'React', 'JavaScript', 'TypeScript',
-    'Node.js', 'Python',
-    'TailwindCSS', 'GraphQL',
-    'MongoDB',
+    'JavaScript', 'TypeScript',
+    'Python', 'TailwindCSS',
+    'C', 'C++', 'Java',
   ];
 
   return (
