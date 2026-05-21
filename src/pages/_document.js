@@ -18,7 +18,7 @@ export default function Document() {
         <meta property="og:url" content="https://heytushar.me/" />
         <meta property="og:title" content="Tushar Jain - Full Stack Developer Portfolio" />
         <meta property="og:description" content="Full Stack Developer specializing in React, Next.js, Node.js, and modern web technologies. Building impactful digital experiences." />
-        <meta property="og:image" content="https://heytushar.me/og-image.png" />
+        <meta property="og:image" content="https://heytushar.me/og-image.svg" />
         <meta property="og:site_name" content="Tushar Jain Portfolio" />
         <meta property="og:locale" content="en_US" />
         
@@ -27,7 +27,7 @@ export default function Document() {
         <meta property="twitter:url" content="https://heytushar.me/" />
         <meta property="twitter:title" content="Tushar Jain - Full Stack Developer Portfolio" />
         <meta property="twitter:description" content="Full Stack Developer specializing in React, Next.js, Node.js, and modern web technologies. Building impactful digital experiences." />
-        <meta property="twitter:image" content="https://heytushar.me/og-image.png" />
+        <meta property="twitter:image" content="https://heytushar.me/og-image.svg" />
         
         {/* Preconnect to domains for faster resource loading */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -57,6 +57,23 @@ export default function Document() {
         
         {/* Preload critical JavaScript */}
         <link rel="preload" href="/_next/static/chunks/main.js" as="script" />
+
+        {/* Service Worker for PWA offline support */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              if ('serviceWorker' in navigator) {
+                window.addEventListener('load', function() {
+                  navigator.serviceWorker.register('/sw.js').then(function(reg) {
+                    console.log('SW registered:', reg.scope);
+                  }).catch(function(err) {
+                    console.log('SW registration failed:', err);
+                  });
+                });
+              }
+            `,
+          }}
+        />
       </Head>
       <body>
         <Main />

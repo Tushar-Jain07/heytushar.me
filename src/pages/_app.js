@@ -1,6 +1,7 @@
 import { useEffect, useState, createContext, useContext } from 'react';
 import Head from 'next/head';
 import { AnimatePresence } from 'framer-motion';
+import { Analytics } from '@vercel/analytics/react';
 import '../styles/globals.css';
 
 // Create a theme context with proper typing
@@ -26,18 +27,18 @@ function MyApp({ Component, pageProps, router }) {
     if (typeof window !== 'undefined') {
       // Get saved theme from localStorage or use system preference
       const savedTheme = localStorage.getItem('theme');
-      
+
       // Check system preference
       const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
       setSystemTheme(prefersDark ? 'dark' : 'light');
-      
+
       // Set theme based on saved preference or system default
       if (savedTheme) {
         setTheme(savedTheme);
       } else {
         setTheme(prefersDark ? 'dark' : 'light');
       }
-      
+
       setMounted(true);
     }
   }, []);
@@ -71,8 +72,9 @@ function MyApp({ Component, pageProps, router }) {
           <Component {...pageProps} key={router.route} />
         </AnimatePresence>
       )}
+      <Analytics />
     </ThemeContext.Provider>
   );
 }
 
-export default MyApp; 
+export default MyApp;
