@@ -34,12 +34,19 @@ export default function About() {
 
       <section className="text-text-secondary text-sm md:text-base leading-relaxed mb-10 space-y-4">
         <p>
-          I'm a Full Stack Web Developer from Ahmedabad, India, passionate about creating fast, functional, scalable and visually engaging web experiences. 
-          I turn complex ideas into clean, user-friendly designs that are reliable, scalable, and perfectly aligned with your brand's identity.
-        </p>
-        <p>
           As a passionate Full Stack Developer, I thrive on building impactful digital experiences. My expertise spans modern web technologies, where I focus on crafting robust, scalable, and intuitive applications. I am driven by a desire to combine innovative solutions with clean code, delivering projects that are both highly functional and a joy to use.
         </p>
+      </section>
+
+      <section className="mb-10">
+        <h3 className="text-2xl font-bold text-text-primary mb-6">Personal Info</h3>
+        <ul className="grid md:grid-cols-2 gap-4 text-sm md:text-base text-text-secondary">
+          <li><span className="font-semibold text-text-primary">Name:</span> Tushar Jain</li>
+          <li><span className="font-semibold text-text-primary">Email:</span> tusharjain1911@gmail.com</li>
+          <li><span className="font-semibold text-text-primary">Address:</span> Ahmedabad, India</li>
+          <li><span className="font-semibold text-text-primary">Role:</span> Full Stack Developer</li>
+          <li><span className="font-semibold text-text-primary">Freelance:</span> Available</li>
+        </ul>
       </section>
 
       <section>
