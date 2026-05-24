@@ -54,8 +54,8 @@ export default function Sidebar() {
             </div>
             <div className="overflow-hidden">
               <p className="text-xs text-text-secondary uppercase tracking-wider mb-1">Phone</p>
-              <a href="tel:+91" className="text-text-primary text-sm hover:text-accent transition-colors">
-                Available on Request
+              <a href="tel:+917567955573" className="text-text-primary text-sm hover:text-accent transition-colors">
+                +91 7567955573
               </a>
             </div>
           </li>
@@ -66,7 +66,7 @@ export default function Sidebar() {
             </div>
             <div className="overflow-hidden">
               <p className="text-xs text-text-secondary uppercase tracking-wider mb-1">Birthday</p>
-              <time className="text-text-primary text-sm">November 19</time>
+              <time className="text-text-primary text-sm">19-03-2006</time>
             </div>
           </li>
 

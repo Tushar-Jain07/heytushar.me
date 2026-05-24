@@ -60,11 +60,6 @@ export default function About() {
           I'm a Full Stack Web Developer from Ahmedabad, India, passionate about creating fast, functional, scalable and visually engaging web experiences. 
           I turn complex ideas into clean, user-friendly designs that are reliable, scalable, and perfectly aligned with your brand's identity.
         </p>
-        <p>
-          Dynamic Full Stack Web Developer with 2+ years of experience building innovative web solutions that enhance user engagement and streamline performance. 
-          Proficient in MERN Stack, Tailwind CSS, Next.js, and REST API design, with a solid foundation in PostgreSQL. Known for delivering robust features, optimizing performance, 
-          and ensuring client satisfaction through clear communication and end-to-end project ownership.
-        </p>
       </section>
 
       <section className="mb-10">
