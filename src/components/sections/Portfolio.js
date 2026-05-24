@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import projectsData from '../../data/projects';
-import { FiEye } from 'react-icons/fi';
+import { FiGithub, FiExternalLink } from 'react-icons/fi';
 
 export default function Portfolio() {
   return (
@@ -21,34 +21,55 @@ export default function Portfolio() {
           <li className="text-sm cursor-pointer hover:text-text-primary transition-colors">Web Development</li>
         </ul>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 gap-8">
           {projectsData.map((project, index) => (
             <div 
               key={index} 
-              className="group cursor-pointer"
-              onClick={() => window.open(project.url, '_blank')}
+              className="group"
             >
-              <div className="relative rounded-xl overflow-hidden mb-4 bg-[#2b2b2c] border border-cardBorder aspect-[4/3]">
+              <div className="relative rounded-xl overflow-hidden mb-5 bg-[#2b2b2c] border border-cardBorder aspect-[4/3] shadow-md">
                 {project.image && (
                   <Image
                     src={project.image}
                     alt={project.title}
                     fill
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 50vw"
                     className="object-cover transition-transform duration-500 group-hover:scale-110"
                     onError={(e) => { e.target.style.display = 'none'; }}
                   />
                 )}
-                {/* Hover overlay with eye icon */}
-                <div className="absolute inset-0 bg-background/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="w-12 h-12 bg-[#2b2b2c] rounded-xl flex items-center justify-center text-accent shadow-lg transform scale-50 group-hover:scale-100 transition-transform duration-300">
-                    <FiEye className="w-6 h-6" />
+                {/* Hover overlay with Github and Live links */}
+                <div className="absolute inset-0 bg-background/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="flex gap-4">
+                    {project.githubUrl && (
+                      <a 
+                        href={project.githubUrl} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="w-12 h-12 bg-[#1c1c1d] hover:bg-accent hover:text-background text-accent rounded-xl flex items-center justify-center shadow-lg transform scale-50 group-hover:scale-100 transition-all duration-300 delay-75"
+                        title="GitHub Repository"
+                      >
+                        <FiGithub className="w-5 h-5" />
+                      </a>
+                    )}
+                    {project.liveUrl && (
+                      <a 
+                        href={project.liveUrl} 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="w-12 h-12 bg-[#1c1c1d] hover:bg-accent hover:text-background text-accent rounded-xl flex items-center justify-center shadow-lg transform scale-50 group-hover:scale-100 transition-all duration-300 delay-150"
+                        title="Live Demo"
+                      >
+                        <FiExternalLink className="w-5 h-5" />
+                      </a>
+                    )}
                   </div>
                 </div>
               </div>
               
-              <h3 className="text-lg font-bold text-text-primary mb-1 group-hover:text-accent transition-colors">{project.title}</h3>
-              <p className="text-text-secondary text-sm font-medium">{project.tags?.[0] || 'Web Development'}</p>
+              <h3 className="text-xl font-bold text-text-primary mb-2 group-hover:text-accent transition-colors">{project.title}</h3>
+              <p className="text-accent text-sm font-medium mb-3">{project.tags?.join(' • ') || 'Web Development'}</p>
+              <p className="text-text-muted text-sm leading-relaxed">{project.description}</p>
             </div>
           ))}
         </div>
