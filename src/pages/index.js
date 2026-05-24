@@ -21,9 +21,9 @@ export default function Home() {
           <Sidebar />
 
           <div className="flex-1 min-w-0 xl:w-[75%] relative">
-            <TabNav activeTab={activeTab} setActiveTab={setActiveTab} />
-            
-            <div className="glass-card p-6 md:p-8 lg:p-10 xl:min-h-[800px] bg-cardBg border-cardBorder">
+            <div className="glass-card p-6 md:p-8 lg:p-10 xl:min-h-[800px] bg-cardBg border-cardBorder relative">
+              <TabNav activeTab={activeTab} setActiveTab={setActiveTab} />
+              
               {activeTab === 'about' && <About />}
               {activeTab === 'resume' && <Resume />}
               {activeTab === 'portfolio' && <Portfolio />}
