@@ -26,13 +26,13 @@ export default function Sidebar() {
 
         <button 
           onClick={() => setShowContacts(!showContacts)}
-          className="xl:hidden absolute top-0 right-0 p-2 text-accent border border-cardBorder rounded-lg bg-[linear-gradient(to_bottom_right,#2a2a2b_0%,#1c1c1d_100%)] shadow-md"
+          className="xl:hidden absolute top-0 right-0 px-5 py-2 text-accent text-sm font-semibold bg-[#2b2b2c] border-l border-b border-cardBorder rounded-bl-[1.5rem] rounded-tr-[1.5rem] shadow-[0_0_15px_rgba(255,219,112,0.05)] transition-colors hover:text-accent-hover z-10"
         >
-          <FiChevronDown className={`w-5 h-5 transition-transform duration-300 ${showContacts ? 'rotate-180' : ''}`} />
+          {showContacts ? 'Hide Contacts' : 'Show Contacts'}
         </button>
       </div>
 
-      <div className={`xl:block transition-all duration-500 overflow-hidden ${showContacts ? 'max-h-[800px] opacity-100 mt-6' : 'max-h-0 opacity-0 xl:max-h-[800px] xl:opacity-100 xl:mt-0'}`}>
+      <div className={`xl:block transition-all duration-500 overflow-hidden ${showContacts ? 'max-h-[800px] opacity-100 mt-6' : 'max-h-0 opacity-0 xl:max-h-[1000px] xl:opacity-100 xl:mt-6'}`}>
         <div className="separator hidden xl:block"></div>
 
         <ul className="flex flex-col gap-6">

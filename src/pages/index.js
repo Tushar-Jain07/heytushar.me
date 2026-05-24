@@ -20,9 +20,17 @@ export default function Home() {
           
           <Sidebar />
 
-          <div className="flex-1 min-w-0 xl:w-[75%] relative">
+          <div className="flex-1 min-w-0 xl:w-[75%] relative flex flex-col">
+            {/* Mobile/Tablet TabNav (Separate Card) */}
+            <div className="xl:hidden glass-card py-4 px-6 mb-6">
+              <TabNav activeTab={activeTab} setActiveTab={setActiveTab} isMobile={true} />
+            </div>
+
             <div className="glass-card p-6 md:p-8 lg:p-10 xl:min-h-[800px] bg-cardBg border-cardBorder relative">
-              <TabNav activeTab={activeTab} setActiveTab={setActiveTab} />
+              {/* Desktop TabNav (Absolute inside main card) */}
+              <div className="hidden xl:block">
+                <TabNav activeTab={activeTab} setActiveTab={setActiveTab} isMobile={false} />
+              </div>
               
               {activeTab === 'about' && <About />}
               {activeTab === 'resume' && <Resume />}
