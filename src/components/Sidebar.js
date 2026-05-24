@@ -9,9 +9,8 @@ export default function Sidebar() {
     <aside className="glass-card p-6 md:p-8 md:sticky md:top-8 h-max w-full xl:w-[280px]">
       <div className="flex xl:flex-col items-center gap-6 xl:gap-4 relative">
         <div className="w-24 h-24 md:w-32 md:h-32 rounded-3xl overflow-hidden bg-[#2a2a2b] flex-shrink-0 flex items-center justify-center border-2 border-cardBorder shadow-lg">
-          {/* Avatar Placeholder */}
           <img 
-            src="https://ui-avatars.com/api/?name=Tushar+Jain&background=ffdb70&color=121212&size=200&font-size=0.4" 
+            src="/images/avatar.png" 
             alt="Tushar Jain" 
             className="w-full h-full object-cover"
           />
@@ -24,15 +23,15 @@ export default function Sidebar() {
           </div>
         </div>
 
-        <button 
+        <button
           onClick={() => setShowContacts(!showContacts)}
-          className="xl:hidden absolute top-0 right-0 px-5 py-2 text-accent text-sm font-semibold bg-[#2b2b2c] border-l border-b border-cardBorder rounded-bl-[1.5rem] rounded-tr-[1.5rem] shadow-[0_0_15px_rgba(255,219,112,0.05)] transition-colors hover:text-accent-hover z-10"
+          className="xl:hidden absolute top-0 right-0 p-2 text-accent border border-cardBorder rounded-lg bg-[linear-gradient(to_bottom_right,#2a2a2b_0%,#1c1c1d_100%)] shadow-md"
         >
-          {showContacts ? 'Hide Contacts' : 'Show Contacts'}
+          <FiChevronDown className={`w-5 h-5 transition-transform duration-300 ${showContacts ? 'rotate-180' : ''}`} />
         </button>
       </div>
 
-      <div className={`xl:block transition-all duration-500 overflow-hidden ${showContacts ? 'max-h-[800px] opacity-100 mt-6' : 'max-h-0 opacity-0 xl:max-h-[1000px] xl:opacity-100 xl:mt-6'}`}>
+      <div className={`xl:block transition-all duration-500 overflow-hidden ${showContacts ? 'max-h-[800px] opacity-100 mt-6' : 'max-h-0 opacity-0 xl:max-h-[800px] xl:opacity-100 xl:mt-0'}`}>
         <div className="separator hidden xl:block"></div>
 
         <ul className="flex flex-col gap-6">
@@ -97,7 +96,7 @@ export default function Sidebar() {
             </a>
           </li>
           <li>
-            <a href="#" target="_blank" rel="noreferrer" className="text-text-secondary hover:text-text-primary transition-colors">
+            <a href="https://x.com/TusharJain6002" target="_blank" rel="noreferrer" className="text-text-secondary hover:text-text-primary transition-colors">
               <FaTwitter className="w-5 h-5" />
             </a>
           </li>
