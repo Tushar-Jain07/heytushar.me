@@ -55,9 +55,6 @@ export default function Document() {
         {/* Canonical URL */}
         <link rel="canonical" href="https://heytushar.me/" />
         
-        {/* Preload critical JavaScript */}
-        <link rel="preload" href="/_next/static/chunks/main.js" as="script" />
-
         {/* Service Worker for PWA offline support */}
         <script
           dangerouslySetInnerHTML={{
