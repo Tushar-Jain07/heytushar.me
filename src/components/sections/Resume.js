@@ -1,6 +1,7 @@
 import React from 'react';
 import { FaJava, FaPython, FaJs, FaGithub } from 'react-icons/fa';
 import { SiCplusplus, SiC } from 'react-icons/si';
+import { FiDownload } from 'react-icons/fi';
 
 export default function Resume() {
   const skills = [
@@ -27,12 +28,10 @@ export default function Resume() {
           href="/Complete_Resume.pdf"
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-2 bg-transparent border border-accent text-accent px-6 py-3 rounded-xl hover:bg-accent hover:text-background transition-all duration-300 shadow-md font-medium"
+          className="inline-flex items-center gap-3 bg-[#2b2b2c]/80 border border-cardBorder text-accent px-6 py-4 rounded-2xl hover:bg-[#2b2b2c] hover:border-accent/50 hover:shadow-[0_0_15px_rgba(255,219,112,0.1)] transition-all duration-300 font-semibold tracking-wide"
         >
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
-          </svg>
-          Download Resume (.pdf)
+          <FiDownload className="w-5 h-5 stroke-[2.5]" />
+          Get My Resume
         </a>
       </div>
 
