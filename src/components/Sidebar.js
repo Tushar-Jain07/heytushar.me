@@ -12,7 +12,7 @@ export default function Sidebar() {
 
         <div className="w-24 h-24 md:w-32 md:h-32 rounded-3xl overflow-hidden bg-[#2a2a2b] flex-shrink-0 flex items-center justify-center border-2 border-cardBorder shadow-lg">
           <img
-            src="/images/avatar.png"
+            src="/images/new-avatar.png"
             alt="Tushar Jain"
             className="w-full h-full object-cover"
           />
