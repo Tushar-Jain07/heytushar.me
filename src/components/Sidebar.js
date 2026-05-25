@@ -10,6 +10,14 @@ export default function Sidebar() {
       <div className="flex xl:flex-col items-center gap-6 xl:gap-4 relative">
 
 
+        <div className="w-24 h-24 md:w-32 md:h-32 rounded-3xl overflow-hidden bg-[#2a2a2b] flex-shrink-0 flex items-center justify-center border-2 border-cardBorder shadow-lg">
+          <img
+            src="/images/avatar.png"
+            alt="Tushar Jain"
+            className="w-full h-full object-cover"
+          />
+        </div>
+
         <div className="flex flex-col xl:items-center text-left xl:text-center flex-1">
           <h1 className="text-2xl md:text-3xl font-semibold text-text-primary tracking-tight mb-2">Tushar Jain</h1>
           <div className="bg-[#2b2b2c] text-text-primary px-4 py-1.5 rounded-lg text-sm font-medium w-max mx-0 xl:mx-auto">
