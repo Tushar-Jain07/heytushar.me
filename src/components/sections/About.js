@@ -62,16 +62,7 @@ export default function About() {
         </p>
       </section>
 
-      <section className="mb-10">
-        <h3 className="text-2xl font-bold text-text-primary mb-6">Personal Info</h3>
-        <ul className="grid md:grid-cols-2 gap-4 text-sm md:text-base text-text-secondary">
-          <li><span className="font-semibold text-text-primary">Name:</span> Tushar Jain</li>
-          <li><span className="font-semibold text-text-primary">Email:</span> tusharjain1911@gmail.com</li>
-          <li><span className="font-semibold text-text-primary">Address:</span> Ahmedabad, India</li>
-          <li><span className="font-semibold text-text-primary">Role:</span> Full Stack Developer</li>
-          <li><span className="font-semibold text-text-primary">Freelance:</span> Available</li>
-        </ul>
-      </section>
+
 
       <section>
         <h3 className="text-2xl font-bold text-text-primary mb-6">What I'm Doing</h3>

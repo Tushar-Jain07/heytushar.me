@@ -8,30 +8,24 @@ export default function Sidebar() {
   return (
     <aside className="glass-card p-6 md:p-8 md:sticky md:top-8 h-max w-full xl:w-[280px]">
       <div className="flex xl:flex-col items-center gap-6 xl:gap-4 relative">
-        <div className="w-24 h-24 md:w-32 md:h-32 rounded-3xl overflow-hidden bg-[#2a2a2b] flex-shrink-0 flex items-center justify-center border-2 border-cardBorder shadow-lg">
-          <img 
-            src="/images/avatar.png" 
-            alt="Tushar Jain" 
-            className="w-full h-full object-cover"
-          />
-        </div>
+
 
         <div className="flex flex-col xl:items-center text-left xl:text-center flex-1">
           <h1 className="text-2xl md:text-3xl font-semibold text-text-primary tracking-tight mb-2">Tushar Jain</h1>
           <div className="bg-[#2b2b2c] text-text-primary px-4 py-1.5 rounded-lg text-sm font-medium w-max mx-0 xl:mx-auto">
-            Full Stack Developer
+            Full Stack Web Developer
           </div>
         </div>
 
         <button
           onClick={() => setShowContacts(!showContacts)}
-          className="xl:hidden absolute top-0 right-0 px-4 py-2 text-accent text-sm font-medium bg-[#2b2b2c] border-l border-b border-cardBorder rounded-bl-2xl rounded-tr-3xl shadow-sm transition-colors hover:text-accent-hover z-10"
+          className="xl:hidden absolute top-0 right-0 p-2 text-accent border border-cardBorder rounded-lg bg-[linear-gradient(to_bottom_right,#2a2a2b_0%,#1c1c1d_100%)] shadow-md"
         >
-          {showContacts ? 'Hide Contacts' : 'Show Contacts'}
+          <FiChevronDown className={`w-5 h-5 transition-transform duration-300 ${showContacts ? 'rotate-180' : ''}`} />
         </button>
       </div>
 
-      <div className={`xl:block transition-all duration-500 overflow-hidden ${showContacts ? 'max-h-[800px] opacity-100 mt-6' : 'max-h-0 opacity-0 xl:max-h-[800px] xl:opacity-100 xl:mt-6'}`}>
+      <div className={`xl:block transition-all duration-500 overflow-hidden ${showContacts ? 'max-h-[800px] opacity-100 mt-6' : 'max-h-0 opacity-0 xl:max-h-[800px] xl:opacity-100 xl:mt-0'}`}>
         <div className="separator hidden xl:block"></div>
 
         <ul className="flex flex-col gap-6">
