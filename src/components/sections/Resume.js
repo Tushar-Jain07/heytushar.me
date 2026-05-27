@@ -25,7 +25,7 @@ export default function Resume() {
       {/* Download Buttons */}
       <div className="flex flex-wrap gap-4 mb-12">
         <a
-          href="/Complete_Resume.pdf"
+          href="/Tushar_Jain_Resume.pdf"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-3 bg-[#2b2b2c]/80 border border-cardBorder text-accent px-6 py-4 rounded-2xl hover:bg-[#2b2b2c] hover:border-accent/50 hover:shadow-[0_0_15px_rgba(255,219,112,0.1)] transition-all duration-300 font-semibold tracking-wide"
@@ -37,7 +37,7 @@ export default function Resume() {
 
       <section>
         <h3 className="text-2xl font-bold text-text-primary mb-6">My Skills</h3>
-        
+
         <ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 bg-[#2b2b2c]/20 p-6 rounded-2xl border border-cardBorder shadow-sm">
           {skills.map((skill, index) => (
             <li key={index} className="bg-[#2b2b2c]/60 border border-cardBorder rounded-xl p-6 flex flex-col items-center justify-center gap-4 hover:border-accent/50 transition-colors shadow-sm group">
