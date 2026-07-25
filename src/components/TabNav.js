@@ -1,7 +1,7 @@
 import React from 'react';
 
 export default function TabNav({ activeTab, setActiveTab, isMobile }) {
-  const tabs = ['About', 'Resume', 'Portfolio', 'Contact'];
+  const tabs = ['About', 'Portfolio', 'Contact'];
 
   // Mobile nav should be a transparent/glass-less container because it sits inside a glass-card wrapper on mobile now
   const desktopClasses = "absolute top-0 right-0 z-10 w-auto bg-[#2b2b2c] border-l border-b border-cardBorder rounded-bl-[2rem] px-0";

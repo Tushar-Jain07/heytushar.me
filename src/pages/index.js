@@ -3,7 +3,6 @@ import Head from 'next/head';
 import Sidebar from '../components/Sidebar';
 import TabNav from '../components/TabNav';
 import About from '../components/sections/About';
-import Resume from '../components/sections/Resume';
 import Portfolio from '../components/sections/Portfolio';
 import Contact from '../components/sections/Contact';
 
@@ -33,7 +32,6 @@ export default function Home() {
               </div>
               
               {activeTab === 'about' && <About />}
-              {activeTab === 'resume' && <Resume />}
               {activeTab === 'portfolio' && <Portfolio />}
               {activeTab === 'contact' && <Contact />}
             </div>
