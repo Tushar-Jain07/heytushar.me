@@ -30,17 +30,7 @@ export default function Resume() {
 
       {/* Page heading */}
       <header className="mb-8">
-        <h2
-          className="relative inline-block pb-4"
-          style={{
-            fontFamily: "'Poppins', sans-serif",
-            fontSize: '32px',
-            fontWeight: 700,
-            color: '#FAFAFA',
-            lineHeight: 1.2,
-            letterSpacing: '-0.01em',
-          }}
-        >
+        <h2 className="text-3xl font-bold text-text-primary relative inline-block pb-4">
           Resume
           <span className="absolute bottom-0 left-0 w-10 h-1 bg-accent rounded-full" />
         </h2>

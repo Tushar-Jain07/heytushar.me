@@ -20,9 +20,10 @@ export default function TabNav({ activeTab, setActiveTab, isMobile }) {
                 setActiveTab(tab.toLowerCase());
                 window.scrollTo({ top: 0, behavior: 'smooth' });
               }}
+              style={{ fontFamily: "'Poppins', sans-serif", fontSize: '15px' }}
               className={`
                 transition-colors font-medium
-                ${isMobile ? "text-sm md:text-base px-2 py-1" : "w-full px-8 py-5 text-sm"}
+                ${isMobile ? "px-2 py-1" : "w-full px-5 py-5"}
                 ${activeTab === tab.toLowerCase() ? 'text-accent' : 'text-text-secondary hover:text-text-primary'}
               `}
             >
