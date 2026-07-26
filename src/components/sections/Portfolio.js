@@ -7,7 +7,17 @@ export default function Portfolio() {
   return (
     <article className="animate-fade-in pb-24 xl:pb-0">
       <header className="mb-8">
-        <h2 className="text-3xl font-bold text-text-primary relative inline-block pb-4">
+        <h2
+          className="relative inline-block pb-4"
+          style={{
+            fontFamily: "'Poppins', sans-serif",
+            fontSize: '32px',
+            fontWeight: 700,
+            color: '#FAFAFA',
+            lineHeight: 1.2,
+            letterSpacing: '-0.01em',
+          }}
+        >
           Portfolio
           <span className="absolute bottom-0 left-0 w-10 h-1 bg-accent rounded-full"></span>
         </h2>
