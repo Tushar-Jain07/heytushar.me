@@ -39,7 +39,7 @@ export default function Resume() {
       {/* Resume Download Button */}
       <div className="mb-10 flex justify-center">
         <a
-          href="/images/Tushar_Jain_Resume.pdf"
+          href="/Tushar_Jain_Resume_XYZ3.pdf"
           download
           style={{
             display: 'inline-flex',
