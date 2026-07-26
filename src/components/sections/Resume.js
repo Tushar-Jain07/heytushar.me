@@ -109,6 +109,75 @@ export default function Resume() {
           </div>
         ))}
       </div>
+
+      {/* Education Section */}
+      <section className="mt-10">
+        {/* Section heading */}
+        <div className="flex items-center gap-3 mb-6">
+          <div
+            style={{
+              width: '36px',
+              height: '36px',
+              borderRadius: '8px',
+              background: 'rgba(240,192,64,0.12)',
+              border: '1px solid rgba(240,192,64,0.25)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              flexShrink: 0,
+            }}
+          >
+            {/* Book / graduation icon */}
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#f0c040"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
+              <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
+            </svg>
+          </div>
+          <h3 className="text-xl font-bold text-text-primary">Education</h3>
+        </div>
+
+        {/* Education entry */}
+        <div className="flex gap-4">
+          {/* Golden dot */}
+          <div className="flex flex-col items-center pt-1">
+            <span
+              style={{
+                width: '10px',
+                height: '10px',
+                borderRadius: '50%',
+                background: '#f0c040',
+                flexShrink: 0,
+                marginTop: '4px',
+              }}
+            />
+          </div>
+
+          <div>
+            <p className="text-text-primary font-bold text-base leading-snug">
+              Sardar Vallabhbhai Global University
+            </p>
+            <p
+              style={{ color: '#f0c040', fontSize: '0.875rem', margin: '4px 0 8px' }}
+            >
+              Aug 2024 — June 2028
+            </p>
+            <p className="text-text-secondary text-sm leading-relaxed">
+              Bachelor of Technology in Computer Science with a strong focus on full
+              stack development, algorithms, and software engineering principles.
+            </p>
+          </div>
+        </div>
+      </section>
     </article>
   );
 }
