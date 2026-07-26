@@ -28,6 +28,14 @@ export default function Resume() {
   return (
     <article className="animate-fade-in pb-24 xl:pb-0">
 
+      {/* Page heading */}
+      <header className="mb-8">
+        <h2 className="text-3xl font-bold text-text-primary relative inline-block pb-4">
+          Resume
+          <span className="absolute bottom-0 left-0 w-10 h-1 bg-accent rounded-full" />
+        </h2>
+      </header>
+
       {/* Resume Download Button */}
       <div className="mb-10 flex justify-center">
         <a
