@@ -27,12 +27,65 @@ const skills = [
 export default function Resume() {
   return (
     <article className="animate-fade-in pb-24 xl:pb-0">
-      <header className="mb-8">
+      <header className="mb-6">
         <h2 className="text-3xl font-bold text-text-primary relative inline-block pb-4">
           My Skills
           <span className="absolute bottom-0 left-0 w-10 h-1 bg-accent rounded-full" />
         </h2>
       </header>
+
+      {/* Resume Download Button — above skills */}
+      <div className="mb-8 flex justify-center">
+        <a
+          href="/Tushar_Jain_Resume.pdf"
+          download
+          style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '10px',
+            padding: '12px 28px',
+            borderRadius: '999px',
+            background: 'rgba(30,30,32,0.85)',
+            border: '1.5px solid rgba(240,192,64,0.35)',
+            boxShadow: '0 0 18px 0 rgba(240,192,64,0.10)',
+            color: '#f0c040',
+            fontWeight: 600,
+            fontSize: '0.95rem',
+            textDecoration: 'none',
+            letterSpacing: '0.01em',
+            transition: 'border-color 0.25s, box-shadow 0.25s, background 0.25s',
+            cursor: 'pointer',
+          }}
+          onMouseEnter={e => {
+            e.currentTarget.style.borderColor = 'rgba(240,192,64,0.75)';
+            e.currentTarget.style.boxShadow = '0 0 28px 2px rgba(240,192,64,0.22)';
+            e.currentTarget.style.background = 'rgba(240,192,64,0.08)';
+          }}
+          onMouseLeave={e => {
+            e.currentTarget.style.borderColor = 'rgba(240,192,64,0.35)';
+            e.currentTarget.style.boxShadow = '0 0 18px 0 rgba(240,192,64,0.10)';
+            e.currentTarget.style.background = 'rgba(30,30,32,0.85)';
+          }}
+        >
+          {/* Download tray icon */}
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="M8 17H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-3" />
+            <polyline points="8 12 12 16 16 12" />
+            <line x1="12" y1="16" x2="12" y2="3" />
+          </svg>
+          Get My Resume
+        </a>
+      </div>
 
       <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-3">
         {skills.map((skill, i) => (
@@ -55,19 +108,6 @@ export default function Resume() {
             </span>
           </div>
         ))}
-      </div>
-
-      <div className="mt-8 flex justify-center">
-        <a
-          href="/Tushar_Jain_Resume.pdf"
-          download
-          className="flex items-center gap-2 px-6 py-3 rounded-xl bg-accent text-white text-sm font-semibold hover:opacity-90 active:scale-95 transition-all duration-200 shadow-md"
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5 5-5M12 15V3" />
-          </svg>
-          Download Resume
-        </a>
       </div>
     </article>
   );
