@@ -27,15 +27,9 @@ const skills = [
 export default function Resume() {
   return (
     <article className="animate-fade-in pb-24 xl:pb-0">
-      <header className="mb-6">
-        <h2 className="text-3xl font-bold text-text-primary relative inline-block pb-4">
-          My Skills
-          <span className="absolute bottom-0 left-0 w-10 h-1 bg-accent rounded-full" />
-        </h2>
-      </header>
 
-      {/* Resume Download Button — above skills */}
-      <div className="mb-8 flex justify-center">
+      {/* Resume Download Button */}
+      <div className="mb-10 flex justify-center">
         <a
           href="/Tushar_Jain_Resume.pdf"
           download
@@ -67,7 +61,6 @@ export default function Resume() {
             e.currentTarget.style.background = 'rgba(30,30,32,0.85)';
           }}
         >
-          {/* Download tray icon */}
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="18"
@@ -87,32 +80,8 @@ export default function Resume() {
         </a>
       </div>
 
-      <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-3">
-        {skills.map((skill, i) => (
-          <div
-            key={i}
-            className="group bg-[#2b2b2c]/60 border border-cardBorder rounded-2xl p-4 flex flex-col items-center gap-2 hover:border-accent/40 hover:bg-[#2b2b2c] transition-all duration-300 cursor-default"
-          >
-            <div
-              className="w-12 h-12 rounded-xl flex items-center justify-center text-sm font-bold shadow-inner"
-              style={{ background: 'rgba(255,255,255,0.05)', color: skill.color }}
-            >
-              {skill.icon ? (
-                <span style={{ color: skill.color }}>{skill.icon}</span>
-              ) : (
-                <span className="tracking-wide text-xs md:text-sm">{skill.abbr}</span>
-              )}
-            </div>
-            <span className="text-text-secondary text-xs text-center leading-tight group-hover:text-text-primary transition-colors">
-              {skill.label}
-            </span>
-          </div>
-        ))}
-      </div>
-
       {/* Education Section */}
-      <section className="mt-10">
-        {/* Section heading */}
+      <section className="mb-10">
         <div className="flex items-center gap-3 mb-6">
           <div
             style={{
@@ -127,7 +96,6 @@ export default function Resume() {
               flexShrink: 0,
             }}
           >
-            {/* Book / graduation icon */}
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="18"
@@ -146,9 +114,7 @@ export default function Resume() {
           <h3 className="text-xl font-bold text-text-primary">Education</h3>
         </div>
 
-        {/* Education entry */}
         <div className="flex gap-4">
-          {/* Golden dot */}
           <div className="flex flex-col items-center pt-1">
             <span
               style={{
@@ -161,14 +127,11 @@ export default function Resume() {
               }}
             />
           </div>
-
           <div>
             <p className="text-text-primary font-bold text-base leading-snug">
               Sardar Vallabhbhai Global University
             </p>
-            <p
-              style={{ color: '#f0c040', fontSize: '0.875rem', margin: '4px 0 8px' }}
-            >
+            <p style={{ color: '#f0c040', fontSize: '0.875rem', margin: '4px 0 8px' }}>
               Aug 2024 — June 2028
             </p>
             <p className="text-text-secondary text-sm leading-relaxed">
@@ -176,6 +139,33 @@ export default function Resume() {
               stack development, algorithms, and software engineering principles.
             </p>
           </div>
+        </div>
+      </section>
+
+      {/* My Skills Section */}
+      <section>
+        <h2 className="text-xl font-bold text-text-primary mb-6">My Skills</h2>
+        <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-3">
+          {skills.map((skill, i) => (
+            <div
+              key={i}
+              className="group bg-[#2b2b2c]/60 border border-cardBorder rounded-2xl p-4 flex flex-col items-center gap-2 hover:border-accent/40 hover:bg-[#2b2b2c] transition-all duration-300 cursor-default"
+            >
+              <div
+                className="w-12 h-12 rounded-xl flex items-center justify-center text-sm font-bold shadow-inner"
+                style={{ background: 'rgba(255,255,255,0.05)', color: skill.color }}
+              >
+                {skill.icon ? (
+                  <span style={{ color: skill.color }}>{skill.icon}</span>
+                ) : (
+                  <span className="tracking-wide text-xs md:text-sm">{skill.abbr}</span>
+                )}
+              </div>
+              <span className="text-text-secondary text-xs text-center leading-tight group-hover:text-text-primary transition-colors">
+                {skill.label}
+              </span>
+            </div>
+          ))}
         </div>
       </section>
     </article>
